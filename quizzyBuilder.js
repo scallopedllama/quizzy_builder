@@ -18,9 +18,6 @@ $(document).ready(function() {
 		addRange(1);
 	});
 	
-	//add hiding stuff to the grade range and data
-	addHideClick('#data');
-	
 	//set default range values if the browser cache didn't fill them in from last time
 	if($('#gr0_start').val() == '')
 		rangeDefVals();
@@ -40,7 +37,6 @@ function addRange(num) {
 		//add hide handlers
 		for(var i = numRanges + 1; i < numRanges + num + 1; i++)
 		{
-			addHideClick('#gr' + i);
 			
 			//hide it
 			$('#gr' + i + ' .hide').click();
@@ -91,7 +87,6 @@ function addQuestion() {
 		numOpts[numQuestions] = -1;
 		
 		//add the show/hide click handler and hide it
-		addHideClick('#q' + numQuestions);
 		$('#q' + numQuestions + ' .hide').click();
 		
 		//add click handler for add option button
@@ -112,7 +107,6 @@ function addOptions(toQuestion, num){
 		
 		for(var thisOpt = numOpts[toQuestion] + 1; thisOpt < numOpts[toQuestion] + num + 1; thisOpt++ ){
 			//add click handlers for the picture options
-			addHideClick('#q' + toQuestion + '_o' + thisOpt);
 			
 			//hide all but the first one
 			if(thisOpt != numOpts[toQuestion] + 1)
@@ -124,26 +118,53 @@ function addOptions(toQuestion, num){
 	});
 }
 
-function addHideClick(useSel) {
-	//hide hidden stuff
-	$(useSel + '_hidden').hide();
-	
-	//add click handler so that when hidden is clicked, it hides and shows
-	//the deatils
-	$(useSel + '_hidden').click(function() {
-		$(this).slideUp(hideSpeed);
-		$(useSel).slideDown(showSpeed);
+
+function addHider(id) {
+	//add click handler for this thing
+	$('#' + id + '_hider').click(function () {
+		$('#' + id + '_hider').unbind();
+	   //grab all the children divs of id where their class is not sect_head and slide them up
+		$('#' + id + ' > .sect').slideUp(hideSpeed, function(){
+      //get old hval
+      var oldHval = $('#' + id + '_hval').html();
+			//fade out the id_hval, change its contents, and fade it back in
+			$('#' + id + '_hval').fadeOut(hideSpeed, function() {
+				//get the value to use from id .hval
+			  $(this).html($('#' + id + ' .hval').attr('value'));
+			  $(this).fadeIn(showSpeed);
+			});
+				
+      //then fade out the hider 
+			$('#' + id + '_hider').fadeOut(hideSpeed, function() {
+				//change click handler
+				addShower(id, oldHval);
+        // change the hider's text, change its class show it and change its click handeler
+        $('#' + id + '_hider').html('[Show]').removeClass('hide').addClass('show').fadeIn(showSpeed);
+			});
+		});
 	});
-	
-	//make it so clicking on the hide class items will hide stuff
-	$(useSel + ' .hide').click(function () {
-		//fill value field
-		$(useSel + '_hidden .value').html($(useSel + '_txt').attr('value'));
-		
-		//hide all the rows that aren't the hidden one
-		$(useSel).slideUp(hideSpeed);
-		
-		//show the hidden one
-		$(useSel + '_hidden').slideDown(showSpeed);
-	});
+}
+
+function addShower(id, oldHval) {
+  //add click handler for this thing
+  $('#' + id + '_hider').click(function () {
+  	$('#' + id + '_hider').unbind();
+     //grab all the children divs of id where their class is not sect_head and slide them up
+    $('#' + id + ' > .sect').slideDown(hideSpeed, function(){
+        //fade out the id_hval, change its contents, and fade it back in
+        $('#' + id + '_hval').fadeOut(hideSpeed, function() {
+          //get the value to use from id > .hval
+          $(this).html(oldHval);
+          $(this).fadeIn(showSpeed);
+        });
+        
+      //then fade out the hider 
+      $('#' + id + '_hider').fadeOut(hideSpeed, function() {
+      	//change its click handeler
+        addHider(id);
+        // change the hider's text, change its class show it
+        $('#' + id + '_hider').html('[Hide]').addClass('show').removeClass('hide').fadeIn(showSpeed);
+      });
+    });
+  });
 }

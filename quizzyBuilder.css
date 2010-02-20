@@ -1,5 +1,120 @@
+/*
+  * * { outline: 2px dotted green }
+  * * * { outline: 2px dotted orange }
+  * * * * { outline: 2px dotted blue }
+  * * * * * { outline: 1px solid red }
+  * * * * * * { outline: 1px solid green }
+  * * * * * * * { outline: 1px solid orange }
+  * * * * * * * * { outline: 1px solid blue }
+*/
+body {
+  text-align: center;
+}
+
+a {
+  color: #0040E2;
+  text-decoration: none;
+}
+
+a:hover{
+  color: #0040E2;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #0040E2;
+}
+
+a:active {
+  color: #0036C0;
+}
+
+h2 {
+  font-size: 22pt;
+  font-weight:normal;
+  margin: 0px;
+}
+
+#content {
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 180px;
+  width: 850px;
+  
+  background: #FFF url('logo.png') no-repeat top left;
+  text-align: left;
+  font-family: sans-serif;
+} 
+
 p{
   margin: 1px;
+}
+
+div {
+  width: 600px;
+}
+
+.float_right {
+  float: right;
+}
+
+.sub_section {
+  clear:both;
+  width: 100%;
+}
+
+.hider {
+  margin-top: 3px;
+  margin-right: 5px;
+  float:right;
+  font-size: smaller;
+  width: auto;
+}
+
+.hide {
+  color: #400;
+}
+
+.show {
+  float:right;
+  font-size: smaller;
+  color: #040;
+}
+
+.main {
+  width: 850px;
+  margin-top: 25px;
+  padding: 3px;
+  border: solid 1px #bbb;
+  background: #fbfbfb;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+.sect {
+  width: 100%;
+}
+
+.sect_head {
+  width: 850px;
+  padding: 3px;
+}
+
+.pic {
+  width: 245px;
+  font-size: 9pt;
+  margin-bottom: 10px;
+}
+
+.pic input {
+  width: 80%;
+  height: 9pt;
+}
+
+.group_title {
+  font-size: 12pt;
+  text-align: center;
+  text-decoration: underline;
 }
 
 td {
@@ -22,16 +137,6 @@ li {
 .title {
   text-align: center;
   text-decoration: underline;
-}
-
-.data {
-  margin-top: 25px;
-  border: solid 1px #bbb;
-  background: #fbfbfb;
-  width: 700px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  overflow: hidden;
 }
 
 
@@ -87,25 +192,7 @@ li {
   overflow: hidden;
 }
 
-.hide {
-  float:right;
-  font-size: smaller;
-  color: #400;
-}
 
-.hidden div {
-  float: left;
-}
-.hidden .value {
-  width: 70%;
-  overflow: hidden;
-}
-
-.show {
-  float:right;
-  font-size: smaller;
-  color: #040;
-}
 
 input{
   width: 98%;
