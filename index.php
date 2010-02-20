@@ -91,11 +91,15 @@
       </div>
       
       <div class="loadsave">
-        <input type="button" id="load_quiz" disabled="true" value="Load Quiz"> &nbsp; &nbsp;
-         <input type="submit" id="save_quiz" value="Save Quiz">
+        <input type="button" id="load_quiz" onClick="alert('Coming soon!');" value="Load Quiz"> &nbsp; &nbsp;
+        <input type="submit" id="save_quiz" value="Save Quiz">
       </div>
     </form>
-    <p>Note: If a grade's start value is empty, that grade will be ignored. For each question, either a question text or picture must be specified or that question will be ignored. Finally, question options that don't have either a text or picture set will be ignored.</p> 
-    <p>This form is not validated so make sure the vales you entered make sense.</p> 
+    <p>Note: If a grade's start value is empty, that grade will be ignored. 
+    <br>For each question, either a question text or picture must be specified or that question will be ignored. 
+    <br>Finally, question options that don't have either a text or picture set will be ignored.</p> 
+    <p>This form is not validated so make sure the values you entered make sense.</p> 
+    <p>The quizzyBuilder is still pretty rough. Things will get better eventually, when I get the time to make them better.</p>
+    <p><a href="http://sourceforge.net/projects/quizzy/files">Click here</a> to download the current stable version of quizzy</p>
   </body>
 </html>
