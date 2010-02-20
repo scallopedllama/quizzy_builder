@@ -29,12 +29,6 @@ a:active {
   color: #0036C0;
 }
 
-h2 {
-  font-size: 22pt;
-  font-weight:normal;
-  margin: 0px;
-}
-
 #content {
   margin-left: auto;
   margin-right: auto;
@@ -64,8 +58,8 @@ div {
 }
 
 .hider {
-  margin-top: 3px;
-  margin-right: 5px;
+  margin-top: 6px;
+  margin-right: 7px;
   float:right;
   font-size: smaller;
   width: auto;
@@ -98,6 +92,7 @@ div {
 .sect_head {
   width: 850px;
   padding: 3px;
+  font-size: 14pt;
 }
 
 .pic {
