@@ -29,6 +29,10 @@ a:active {
   color: #0036C0;
 }
 
+input{
+  width: 98%;
+}
+
 #content {
   margin-left: auto;
   margin-right: auto;
@@ -52,7 +56,7 @@ div {
   float: right;
 }
 
-.sub_section {
+.group {
   clear:both;
   width: 100%;
 }
@@ -63,15 +67,14 @@ div {
   float:right;
   font-size: smaller;
   width: auto;
+  cursor:pointer;
 }
 
-.hide {
+.hide, .hide:hover {
   color: #400;
 }
 
-.show {
-  float:right;
-  font-size: smaller;
+.show, .show:hover {
   color: #040;
 }
 
@@ -89,6 +92,16 @@ div {
   width: 100%;
 }
 
+.sub_sect {
+  width: 841px;
+  margin-top: 5px;
+  padding: 3px;
+  border: solid 1px #bbb;
+  background: #ededed;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
 .sect_head {
   width: 850px;
   padding: 3px;
@@ -104,6 +117,7 @@ div {
 .pic input {
   width: 80%;
   height: 9pt;
+  font-size: 8pt;
 }
 
 .group_title {
@@ -112,6 +126,16 @@ div {
   text-decoration: underline;
 }
 
+.dragging_container {
+  padding: 0px;
+  list-style: none;
+}
+
+.short_input {
+  width: 40px;
+}
+
+/*
 td {
   vertical-align: top;
 }
@@ -222,7 +246,7 @@ input{
 }
 .loadsave input{
   width: 45%;
-}
+}*/
 
 /*Loading styling*/
 .loading {

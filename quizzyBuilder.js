@@ -10,6 +10,10 @@ var numRanges = 4;
  
 //When the document is ready get things goin
 $(document).ready(function() {
+	//make grading sortable
+	$('#grades_container').sortable({ cursor: 'n-resize', delay: 300 });
+	
+	/*
 	$.loading.onAjax = true;
 	
 	//add click handlers
@@ -25,9 +29,10 @@ $(document).ready(function() {
 	addQuestion();
 	
 	//hide everything except for data
-	$('#grading .hide').click();
+	$('#grading .hide').click();*/
 });
 
+/*
 function addRange(num) {
 	$.loading();
 	$.get('addRange.php', {startIndex: numRanges + 1, numAdd: num}, function(data) {
@@ -116,7 +121,7 @@ function addOptions(toQuestion, num){
 		//we got all num options
 		numOpts[toQuestion]+=num;
 	});
-}
+}*/
 
 
 function addHider(id) {
@@ -142,6 +147,7 @@ function addHider(id) {
         $('#' + id + '_hider').html('[Show]').removeClass('hide').addClass('show').fadeIn(showSpeed);
 			});
 		});
+		return false;
 	});
 }
 
@@ -163,8 +169,9 @@ function addShower(id, oldHval) {
       	//change its click handeler
         addHider(id);
         // change the hider's text, change its class show it
-        $('#' + id + '_hider').html('[Hide]').addClass('show').removeClass('hide').fadeIn(showSpeed);
+        $('#' + id + '_hider').html('[Hide]').removeClass('show').addClass('hide').fadeIn(showSpeed);
       });
     });
+    return false;
   });
 }

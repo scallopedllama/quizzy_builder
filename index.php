@@ -6,8 +6,9 @@
     <!--don't even give IE8 the option for wonky-mode.-->
     <META http-equiv="X-UA-Compatible" content="IE=8"/>
     
-    <script type="text/javascript" src="../quizzy/lib/jquery-1.3.2.js"></script>
+    <script type="text/javascript" src="lib/jquery-1.4.2.js"></script>
     <script type="text/javascript" src="../quizzy/lib/jquery.loading.js"></script>
+    <script type="text/javascript" src="lib/jquery-ui-1.7.2.custom.min.js"></script>
     <script type="text/javascript" src="quizzyBuilder.js" charset="utf-8"></script>
     <link rel="stylesheet" type="text/css" href="quizzyBuilder.css" charset="utf-8">
 
@@ -21,8 +22,12 @@
 	<body>
 	  <div id="content">
       <form method="get" action="saveQuiz.php" id="quizzyBuilder">
-        <!--quiz data container-->
-        <?php include 'addQuizInfo.php'; /*?>
+
+        <?php 
+          include 'addQuizInfo.php'; 
+          include 'addGrading.php';
+        
+        /*?>
         
         <!--grading container-->
         <div class="grading hidden" id="grading_hidden">
