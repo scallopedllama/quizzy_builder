@@ -14,8 +14,8 @@
   $rank_name = '';
   $rank_letter = '';
 ?>
-  <li class="grade_range sub_sect">
-    <?php addHider('quiz_data' . $range_no); ?>
+  <li class="grade_range sub_sect" id="grade_range<?php echo $range_no; ?>">
+    <?php addHider('grade_range' . $range_no); ?>
     <div class="sect_head">↕ Grade <span id="quiz_data_hval">Data</span></div>
     <div class="sect">
       <div class="group">
