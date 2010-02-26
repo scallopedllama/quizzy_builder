@@ -6,6 +6,9 @@
 	 * PARAMETERS passed in GET:
 	 */
   
+  include_once 'util.php';
+  
+  //this is kind of an ugly hack, but it works.
   $range_no = isset($i) ? $i : $_GET['range_no'];
   $grade_pic_src = '';
   $grade_pic_alt = '';

@@ -12,6 +12,10 @@
           include 'addRange.php'; 
         }
       ?>
+      
     </ul>
+    <div class="sub_sect" style="width:275px;">
+      <h2 style="cursor:pointer;" id="grading_add">Add another range</h2>
+    </div>
   </div>
 </div>

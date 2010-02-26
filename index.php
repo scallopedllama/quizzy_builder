@@ -28,44 +28,6 @@
           include 'addGrading.php';
         
         /*?>
-        
-        <!--grading container-->
-        <div class="grading hidden" id="grading_hidden">
-          <span class="show">[Show Details]</span>
-          <p>Grading</p>
-        </div>
-        <table class="grading" id="grading" cellspacing="5px">
-          <tr>
-            <td colspan="2">
-              <span class="hide">[Hide Details]</span>
-              <p class="title">Grading</p>
-            </td>
-          </tr>
-          <tr>
-            <td id="grading_c" colspan="2">
-              <script type="text/javascript">
-                //need to add cilck handeler for the whole before the parts
-  	            addHideClick('#grading');
-              </script>
-              <?php
-                $startIndex = 0;
-                $numAdd = 5;
-                include 'addRange.php';
-              ?>
-              <script type="text/javascript">
-                //show/hid click handlers for the grades
-                for(var i = 0; i < 5; i++)
-                  addHideClick('#gr' + i);
-              </script>
-            </td>
-          </tr>
-          <tr id="gr_foot">
-            <td><input type="button" id="use_def" value="Default Values" onClick="rangeDefVals();"></td>
-            <td align="right"><input type="button" id="add_range" value="Add Another Grade"></td>
-           </td>
-          </tr>
-        </table>
-    
         <!--questions container-->
         <div id="qs"></div>
         <div>

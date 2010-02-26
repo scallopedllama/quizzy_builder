@@ -10,8 +10,14 @@ var numRanges = 4;
  
 //When the document is ready get things goin
 $(document).ready(function() {
+	//all loading stuff is triggered by ajax
+	$.loading.onAjax = true;
+	
 	//make grading sortable
-	$('#grades_container').sortable({ cursor: 'n-resize', delay: 300 });
+	$('#grades_container').sortable({ cursor: 'n-resize'});
+	
+	//add click handler for the addQuiz feature
+	$('#grading_add').click(addRange);
 	
 	/*
 	$.loading.onAjax = true;
@@ -32,25 +38,17 @@ $(document).ready(function() {
 	$('#grading .hide').click();*/
 });
 
-/*
-function addRange(num) {
+function addRange() {
 	$.loading();
-	$.get('addRange.php', {startIndex: numRanges + 1, numAdd: num}, function(data) {
+	$.get('addRange.php', {range_no: numRanges + 1}, function(data) {
 		//add to end of grade ranges
-		$('#grading_c').append(data);
-		
-		//add hide handlers
-		for(var i = numRanges + 1; i < numRanges + num + 1; i++)
-		{
-			
-			//hide it
-			$('#gr' + i + ' .hide').click();
-		}
-		
-		//increment number of raages
-		numRanges+=num;
+		$('#grades_container').append(data);
+				
+		//increment number of ranges
+		numRanges++;
 	});
 }
+/*
 
 //puts some default values in the range fields
 function rangeDefVals() {

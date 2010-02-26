@@ -15,7 +15,7 @@
   function addHider($id_name)
   {
 ?>
-    <div class="hider"><a class="hide" id="<?php echo $id_name;?>_hider">[Hide]</a></div>
+    <div class="hider hide" id="<?php echo $id_name;?>_hider">[Hide]</div>
     <script type="text/javascript">addHider('<?php echo $id_name; ?>');</script>
 <?php
   }

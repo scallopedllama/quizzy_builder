@@ -11,6 +11,15 @@ body {
   text-align: center;
 }
 
+h2 {
+  color: #0040E2;
+  margin: 5px;
+}
+
+h2:hover {
+  text-decoration: underline;
+}
+
 a {
   color: #0040E2;
   text-decoration: none;
