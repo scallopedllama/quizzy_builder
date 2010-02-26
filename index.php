@@ -26,6 +26,7 @@
         <?php 
           include 'addQuizInfo.php'; 
           include 'addGrading.php';
+          
         
         /*?>
         <!--questions container-->
