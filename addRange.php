@@ -16,7 +16,7 @@
 ?>
   <li class="grade_range sub_sect" id="grade_range<?php echo $range_no; ?>">
     <?php addHider('grade_range' . $range_no); ?>
-    <div class="sect_head">↕ Grade <span id="quiz_data_hval">Data</span></div>
+    <div class="sect_head">↕ Grade Range <span id="grade_range<?php echo $range_no; ?>_hval">Data</span></div>
     <div class="sect">
       <div class="group">
       <?php addPic('grade', 'Rank picture', $grade_pic_src, $grade_pic_alt, 'float_right'); ?>

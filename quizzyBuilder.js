@@ -135,7 +135,7 @@ function addHider(id) {
 			//fade out the id_hval, change its contents, and fade it back in
 			$('#' + id + '_hval').fadeOut(hideSpeed, function() {
 				//get the value to use from id .hval
-			  $(this).html($('#' + id + ' .hval').attr('value'));
+			  $(this).html("'" + $('#' + id + ' .hval').attr('value') + "'");
 			  $(this).fadeIn(showSpeed);
 			});
 				
