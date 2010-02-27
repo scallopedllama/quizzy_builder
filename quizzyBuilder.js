@@ -4,7 +4,7 @@
 
 var showSpeed = 'def';
 var hideSpeed = 'def';
-var numQuestions = 3;
+var numQuestions = 2;
 var numOpts = new Array();
 var numRanges = 4;
  
@@ -21,10 +21,12 @@ $(document).ready(function() {
 	$('#grading_add').click(addRange);
 	$('#quest_add').click(addQuest);
 	
-	//start the builder with 3 questions
-	for( var i = 0; i < 3; i++ )
-	 addQuest();
-	
+	 //$('.hide').click();
+	 
+	 //already added 3 questions with 3 opts each so...
+	 for (var i = 0; i < 3; i++) {
+	 	 numOpts[i] = 2;
+	 }
 	
 	/*
 	//set default range values if the browser cache didn't fill them in from last time
@@ -40,7 +42,7 @@ function addRange() {
 	$.get('addRange.php', {range_no: numRanges + 1}, function(data) {
 		//add to end of grade ranges
 		$('#grades_container').append(data);
-				
+		
 		//increment number of ranges
 		numRanges++;
 	});
@@ -77,35 +79,23 @@ function rangeDefVals() {
 
 function addQuest() {
 	$.loading();
-	$.get('addQuestion.php', {quest_no: numQuestions + 1}, function(data) {
+	
+  numQuestions++;
+	$.get('addQuestion.php', {quest_no: numQuestions}, function(data) {
 		//add that question to the questions list
 		$('#questions_container').append(data);
 		
-		//there's another question now
-		++numQuestions;
 		//init its options entry in that array
-		numOpts[numQuestions] = -1;
-		
-		//add click handler for add option button
-		$('#q' + numQuestions + '_opt_add').click(function(){
-		  addOptions(numQuestions);
-		});
-		
-		//add three options to that question
-	  for (var i = 0; i < 3; i++) {
-		  addOpt(numQuestions);
-	  }
+		numOpts[numQuestions] = 3;
 	});
 }
 
 function addOpt(toQuestion){
 	$.loading();
-	$.get('addOption.php', {quest_no: toQuestion, opt_no: numOpts[toQuestion] + 1}, function(data) {
+  numOpts[toQuestion]++;
+	$.get('addOption.php', {quest_no: toQuestion, opt_no: numOpts[toQuestion]}, function(data) {
 		//add it to the list of options
 		$('#q' + toQuestion + '_container').append(data);
-				
-		//we got all num options
-		numOpts[toQuestion]++;
 	});
 }
 

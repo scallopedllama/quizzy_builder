@@ -28,6 +28,9 @@
           include 'addGrading.php';
           
           echo '<ul id="questions_container" class="dragging_container">';
+          for ($i = 0; $i < 3; ++$i) {
+            include 'addQuestion.php';
+          }
           echo '</ul>';
         ?>
         <div class="sub_sect" style="width:305px;">

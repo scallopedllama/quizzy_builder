@@ -1,7 +1,7 @@
 <?php
   include_once 'util.php';
   
-  $quest_no = $_GET['quest_no'];
+  $quest_no = isset($i) ? $i : $_GET['quest_no'];
   $mainId = 'q' . $quest_no;
   $quest_pic_src = '';
   $quest_pic_alt = '';
@@ -18,6 +18,11 @@
     </div>
     <div class="group">
       <ul id="<?php echo $mainId; ?>_container" class="dragging_container">
+        <?php 
+          for ($o=0; $o<3; $o++) {
+            include 'addOption.php'; 
+          }
+        ?>
       </ul>
       <div class="sub_sect" style="width:275px;">
         <h2 style="cursor:pointer;" id="<?php echo $mainId; ?>_opt_add">Add another option</h2>

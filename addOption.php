@@ -1,8 +1,8 @@
 <?php
   include_once 'util.php';
   
-  $quest_no = $_GET['quest_no'];
-  $opt_no = $_GET['opt_no'];
+  $quest_no = isset($i) ? $i : $_GET['quest_no'];
+  $opt_no = isset($o) ? $o : $_GET['opt_no'];
   $opt_txt = '';
   $opt_pic_src = '';
   $opt_pic_alt = '';
@@ -26,3 +26,6 @@
       </div>
     </div>
   </li>
+  <script type="text/javascript">
+    $('#<?php echo $main_id; ?>_hider').click();
+  </script>
