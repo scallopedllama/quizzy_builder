@@ -103,8 +103,8 @@ function addOpt(toQuestion){
 
 function addHider(id) {
 	//add click handler for this thing
-	$('#' + id + '_hider').click(function () {
-		$('#' + id + '_hider').unbind();
+	$('#' + id + '_hider:first').click(function () {
+		$('#' + id + '_hider:first').unbind();
 	   //grab all the children divs of id where their class is not sect_head and slide them up
 		$('#' + id + ' > .sect').slideUp(hideSpeed, function(){
       //get old hval
@@ -124,14 +124,13 @@ function addHider(id) {
         $('#' + id + '_hider').html('[Show]').removeClass('hide').addClass('show').fadeIn(showSpeed);
 			});
 		});
-		return false;
 	});
 }
 
 function addShower(id, oldHval) {
   //add click handler for this thing
-  $('#' + id + '_hider').click(function () {
-  	$('#' + id + '_hider').unbind();
+  $('#' + id + '_hider:first').click(function () {
+  	$('#' + id + '_hider:first').unbind();
      //grab all the children divs of id where their class is not sect_head and slide them up
     $('#' + id + ' > .sect').slideDown(hideSpeed, function(){
         //fade out the id_hval, change its contents, and fade it back in
@@ -149,7 +148,6 @@ function addShower(id, oldHval) {
         $('#' + id + '_hider').html('[Hide]').removeClass('show').addClass('hide').fadeIn(showSpeed);
       });
     });
-    return false;
   });
 }
 
