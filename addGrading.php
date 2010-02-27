@@ -18,3 +18,6 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  $('#quiz_grading_hider').click();
+</script>

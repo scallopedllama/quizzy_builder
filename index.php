@@ -33,29 +33,18 @@
           }
           echo '</ul>';
         ?>
-        <div class="sub_sect" style="width:305px;">
+        <div class="main" style="width:305px;">
           <h2 style="cursor:pointer;" id="quest_add">Add another Question</h2>
         </div>
-        
-        <?php /*?>
-        <!--questions container-->
-        <div id="qs"></div>
-        <div>
-          <input type="button" id="add_quest" value="Add Another Question">
+        <div class="main" style="width:143px; float: right; margin: 100px 0px 100px 0px;">
+          <h2 style="cursor:pointer;" id="save">Save Quiz</h2>
         </div>
-        
-        <div class="loadsave">
-          <input type="button" id="load_quiz" onClick="alert('Coming soon!');" value="Load Quiz"> &nbsp; &nbsp;
-          <input type="submit" id="save_quiz" value="Save Quiz">
+        <div class="main" style="width:140px; float: left; margin: 100px 0px 100px 0px;">
+          <h2 style="cursor:pointer;" id="load">Load Quiz</h2>
         </div>
-      </form>
-      <p>Note: If a grade's start value is empty, that grade will be ignored. 
-      <br>For each question, either a question text or picture must be specified or that question will be ignored. 
-      <br>Finally, question options that don't have either a text or picture set will be ignored.</p> 
-      <p>This form is not validated so make sure the values you entered make sense.</p> 
-      <p>The quizzyBuilder is still pretty rough. Things will get better eventually, when I get the time to make them better.</p>
-      <p><a href="http://sourceforge.net/projects/quizzy/files">Click here</a> to download the current stable version of quizzy</p>
-      <?php */ ?>
+        <div style="clear: both; margin-top: 100px;">
+          foobar. this was made by me. blah blah.
+        </div>
     </div>
   </body>
 </html>

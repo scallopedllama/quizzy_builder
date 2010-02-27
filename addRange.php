@@ -16,10 +16,11 @@
   $range_end = '';
   $rank_name = '';
   $rank_letter = '';
+  $main_id = 'grade_range' . $range_no;
 ?>
-  <li class="grade_range sub_sect" id="grade_range<?php echo $range_no; ?>">
-    <?php addHider('grade_range' . $range_no); ?>
-    <div class="sect_head_cont"><div class="sect_head">↕ Grade Range </div><div id="grade_range<?php echo $range_no; ?>_hval" class="hval_cont">Data</div></div>
+  <li class="grade_range sub_sect" id="<?php echo $main_id; ?>">
+    <?php addHider($main_id); ?>
+    <div class="sect_head_cont"><div class="sect_head">↕ Grade Range </div><div id="<?php echo $main_id; ?>_hval" class="hval_cont">Data</div></div>
     <div class="sect">
       <div class="group">
         <?php addPic('grade', 'Rank picture', $grade_pic_src, $grade_pic_alt, 'float_right'); ?>
@@ -29,3 +30,6 @@
       </div>
     </div>
   </li>
+  <script type="text/javascript">
+    $('#<?php echo $main_id; ?>_hider').click();
+  </script>
