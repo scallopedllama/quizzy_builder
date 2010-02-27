@@ -12,7 +12,7 @@
 
 <div class="main" id="quiz_data">
   <?php addHider('quiz_data'); ?>
-  <div class="sect_head">Quiz <span id="quiz_data_hval">Data</span></div>
+  <div class="sect_head_cont"><div class="sect_head">Quiz </div><div id="quiz_data_hval" class="hval_cont">Data</div></div>
   <div class="sect">
     <div class="group">
       <?php addPic('quiz', 'Quiz picture', $title_pic_src, $title_pic_alt, 'float_right'); ?>

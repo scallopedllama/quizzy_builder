@@ -4,7 +4,7 @@
 
 var showSpeed = 'def';
 var hideSpeed = 'def';
-var numQuestions = -1;
+var numQuestions = 3;
 var numOpts = new Array();
 var numRanges = 4;
  
@@ -13,21 +13,16 @@ $(document).ready(function() {
 	//all loading stuff is triggered by ajax
 	$.loading.onAjax = true;
 	
-	//make grading sortable
+	//make sortable stuff sortable
 	$('#grades_container').sortable({ cursor: 'n-resize'});
+  $('#questions_container').sortable({ cursor: 'n-resize'});
 	
 	//add click handler for the addQuiz feature
 	$('#grading_add').click(addRange);
+	$('#opt_add').click(addOpt);
+	$('#quest_add').click(addQuest);
 	
 	/*
-	$.loading.onAjax = true;
-	
-	//add click handlers
-	$('#add_quest').click(addQuestion);
-	$('#add_range').click(function () {
-		addRange(1);
-	});
-	
 	//set default range values if the browser cache didn't fill them in from last time
 	if($('#gr0_start').val() == '')
 		rangeDefVals();
@@ -76,50 +71,41 @@ function rangeDefVals() {
 	$('#gr4_end').val('60');
 	$('#gr4_grade').val('F');
 	$('#gr4_txt').val('You Fail!');
-}
+}*/
 
-function addQuestion() {
+function addQuest() {
 	$.loading();
-	$.get('addQuestion.php', {questNo: numQuestions + 1}, function(data) {
+	$.get('addQuestion.php', {quest_no: numQuestions + 1}, function(data) {
 		//add that question to the questions list
-		$('#qs').append(data);
+		$('#questions_container').append(data);
 		
 		//there's another question now
 		++numQuestions;
 		//init its options entry in that array
 		numOpts[numQuestions] = -1;
 		
-		//add the show/hide click handler and hide it
-		$('#q' + numQuestions + ' .hide').click();
-		
 		//add click handler for add option button
-		$('#q' + numQuestions + '_add_opt').click(function(){
-			addOptions(numQuestions, 1);
+		$('#q' + numQuestions + '_opt_add').click(function(){
+		  addOptions(numQuestions);
 		});
 		
 		//add three options to that question
-		addOptions(numQuestions, 3);
+	  for (var i = 0; i < 3; i++) {
+		  addOptions(numQuestions);
+	  }
 	});
 }
 
-function addOptions(toQuestion, num){
+function addOptions(toQuestion){
 	$.loading();
-	$.get('addOption.php', {questNo: toQuestion, optNo: numOpts[toQuestion] + 1, numAdd: num}, function(data) {
+	$.get('addOption.php', {quest_no: toQuestion, opt_no: numOpts[toQuestion] + 1}, function(data) {
 		//add it to the list of options
-		$('#q' + toQuestion + '_opts').append(data);
-		
-		for(var thisOpt = numOpts[toQuestion] + 1; thisOpt < numOpts[toQuestion] + num + 1; thisOpt++ ){
-			//add click handlers for the picture options
-			
-			//hide all but the first one
-			if(thisOpt != numOpts[toQuestion] + 1)
-				$('#q' + toQuestion + '_o' + thisOpt + ' .hide').click();
-		}
-		
+		$('#q' + toQuestion + '_container').append(data);
+				
 		//we got all num options
 		numOpts[toQuestion]+=num;
 	});
-}*/
+}
 
 
 function addHider(id) {

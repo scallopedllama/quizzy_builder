@@ -1,49 +1,35 @@
 <?php
-	/*
-	 * DESCRIPTION: 
-	 * 	 used to add a question to the quizzyBuilder
-	 * 
-	 * PARAMETERS passed in GET:
-	 *  _GET['questNo']        current question being worked on
-	 *   
-	 */
-  $questNo = $_GET['questNo'];
-
-  function addInput($questNo, $type, $field, $class = ''){
-    echo '<input type="'.$type.'"';
-    echo ' id="q'.$questNo.'_'.$field.'"';
-    echo ' name="q'.$questNo.'_'.$field.'"';
-    echo ' class="'.$class.'"';
-    echo '>';
-  }
+  include_once 'util.php';
+  
+  $quest_no = isset($i) ? $i : $_GET['quest_no'];
+  $mainId = 'q' . $quest_no;
+  $quest_pic_src = '';
+  $quest_pic_alt = '';
+  $quest_txt = '';
 ?>
-    
-<div class="quest hidden" id="<?php echo 'q'.$questNo.'_hidden'; ?>">
-  <div><?php echo 'Question '.($questNo + 1); ?>:&nbsp;</div>
-  <div class="value"></div>
-  <span class="show">[Show Details]</span>
+
+<div class="main" id="<?php echo $mainId; ?>">
+  <?php addHider($mainId); ?>
+  <div class="sect_head_cont"><div class="sect_head">↕ Question </div><div id="<?php echo $mainId; ?>_hval" class="hval_cont">Data</div></div>
+  <div class="sect">
+    <div class="group">
+      <?php addPic('quest', 'Question picture', $quest_pic_src, $quest_pic_alt, 'float_right'); ?>
+      <div class="group_title">Question Text <textarea rows="3" cols="82" class="hval"><?php echo $quest_txt; ?></textarea></div>
+    </div>
+    <div class="group">
+      <ul id="<?php echo $mainId; ?>_container" class="dragging_container">
+        <?php 
+          for ($o=0; $o<3; $o++) {
+            include 'addOption.php'; 
+          }
+        ?>
+      </ul>
+      <script type="text/javascript">
+        $('#<?php echo $mainId; ?>_container').sortable({ cursor: 'n-resize'});
+      </script>
+      <div class="sub_sect" style="width:275px;">
+        <h2 style="cursor:pointer;" id="<?php echo $mainId; ?>_opt_add">Add another option</h2>
+      </div>
+    </div>
+  </div>
 </div>
-<table cellspacing="5px" class="quest" id="<?php echo 'q'.$questNo; ?>" >
-  <tr>
-    <td width="60%">
-      <span class="hide">[Hide Details]</span>
-      <p>Question <?php echo ($questNo + 1);?> </p>
-      <?php echo '<textarea rows="6" cols="57" name="q'.$questNo.'_txt" id="q'.$questNo.'_txt"></textarea>'; ?> 
-    </td>
-    <td class="pic_opts" width="40%">
-      <p class="title">Question Text's Picture:</p>
-      <p>Src: <?php addInput($questNo, 'text', 'pic_src', 'pic_src'); ?></p>
-      <p>Alt: <?php addInput($questNo, 'text', 'pic_alt', 'pic_src'); ?></p>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <table id="q<?php echo $questNo;?>_opts" class="clear"></table>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <input type="submit" id="q<?php echo $questNo;?>_add_opt" value="Add Another Option">
-    </td>
-  </tr>
-</table>

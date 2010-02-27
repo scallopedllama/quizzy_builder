@@ -20,6 +20,10 @@ h2:hover {
   text-decoration: underline;
 }
 
+ul {
+  padding: 0px;
+}
+
 a {
   color: #0040E2;
   text-decoration: none;
@@ -65,6 +69,10 @@ div {
   float: right;
 }
 
+.float_left {
+  float: left;
+}
+
 .group {
   clear:both;
   width: 100%;
@@ -87,6 +95,11 @@ div {
   color: #040;
 }
 
+.hval_cont {
+  width: 600px;
+  overflow: hidden;
+}
+
 .main {
   width: 850px;
   margin-top: 25px;
@@ -99,6 +112,7 @@ div {
 
 .sect {
   width: 100%;
+  clear: both;
 }
 
 .sub_sect {
@@ -111,10 +125,16 @@ div {
   -webkit-border-radius: 5px;
 }
 
-.sect_head {
+.sect_head_cont {
   width: 850px;
   padding: 3px;
   font-size: 14pt;
+}
+
+.sect_head {
+  width: auto;
+  float: left;
+  margin-right: 5px;
 }
 
 .pic {
