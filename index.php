@@ -99,7 +99,7 @@
     <br>For each question, either a question text or picture must be specified or that question will be ignored. 
     <br>Finally, question options that don't have either a text or picture set will be ignored.</p> 
     <p>This form is not validated so make sure the values you entered make sense.</p> 
-    <p>The quizzyBuilder is still pretty rough. Things will get better eventually, when I get the time to make them better.</p>
+    <p>The quizzyBuilder is still pretty rough. I'm actively working on a new and improved version that looks slick. Stay tuned!</p>
     <p><a href="http://sourceforge.net/projects/quizzy/files">Click here</a> to download the current stable version of quizzy</p>
   </body>
 </html>
