@@ -41,15 +41,16 @@ XML;
   
   //data
   $quiz->addChild('title', getv('data_txt'));
+  addImg('quiz', $quiz);
   //if a description tag is needed
-  if(isset($_GET['data_desc']) || isset($_GET['data_pic_src']))
+  if(gotv('data_desc') || gotv('data_pic_src'))
   {
     $desc = $quiz->addChild('description');
 
     if(isset($_GET['data_desc']))
       $desc->addChild('text', getv('data_desc'));
     
-    addImg('data', $desc);
+    addImg('quiz_desc', $desc);
   }
   
   
@@ -86,7 +87,7 @@ XML;
     $qsel = 'q'.$i;
     
     //if the text field for this question is empty, don't add the question
-    if(getv($qsel.'_txt') != '' && getv($qsel.'_pic_src') != '')
+    if(getv($qsel.'_txt') != '' || getv($qsel.'_pic_src') != '')
     {
       $quest = $quiz->addChild('question');
       $quest->addChild('text', getv($qsel.'_txt'));
@@ -100,7 +101,7 @@ XML;
         $osel = 'q'.$i.'_o'.$j;
         
         //if the text field is empty, don't add the question
-        if(getv($osel.'_txt') != '' && getv($osel.'_pic_src') != '')
+        if(getv($osel.'_txt') != '' || getv($qsel . '_pic_src') != '')
         {
           $opt = $quest->addChild('option');
           $opt->addChild('text', getv($osel.'_txt'));

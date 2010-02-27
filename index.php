@@ -21,7 +21,7 @@
 	</head>
 	<body>
 	  <div id="content">
-      <form method="get" action="saveQuiz.php" id="quizzyBuilder">
+      <form method="get" action="saveQuiz.php" id="quizzyBuilder" target="_blank">
 
         <?php 
           include 'addQuizInfo.php'; 
@@ -39,9 +39,12 @@
         <div class="main" style="width:143px; float: right; margin: 100px 0px 100px 0px;">
           <h2 style="cursor:pointer;" id="save">Save Quiz</h2>
         </div>
-        <div class="main" style="width:140px; float: left; margin: 100px 0px 100px 0px;">
+      </form>
+      <form method="get" action="index.php">
+        <div class="main" style="width:143px; float: left; margin: 100px 0px 100px 0px;">
           <h2 style="cursor:pointer;" id="load">Load Quiz</h2>
         </div>
+      </form>
         <div style="clear: both; margin-top: 100px;">
           foobar. this was made by me. blah blah.
         </div>

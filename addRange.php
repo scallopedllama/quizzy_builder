@@ -19,17 +19,14 @@
   $main_id = 'grade_range' . $range_no;
 ?>
   <li class="grade_range sub_sect" id="<?php echo $main_id; ?>">
-    <?php addHider($main_id); ?>
+    <?php addHider($main_id, TRUE); ?>
     <div class="sect_head_cont"><div class="sect_head">↕ Grade Range </div><div id="<?php echo $main_id; ?>_hval" class="hval_cont">Data</div></div>
     <div class="sect">
       <div class="group">
-        <?php addPic('grade', 'Rank picture', $grade_pic_src, $grade_pic_alt, 'float_right'); ?>
-        <div>If user's final grade is between <input type="text" class="short_input" value="<?php echo $range_start; ?>">% and <input type="text" name="rank_end" class="short_input" value="<?php echo $range_end; ?>">%,</div>
-        <div>give letter grade <input type="text" class="short_input" value="<?php echo $rank_letter; ?>"> and assign the following rank:</div>
-        <div><input type="text" class="hval" value="<?php echo $rank_name; ?>"></div>
+        <?php addPic('', 'Rank picture', $grade_pic_src, $grade_pic_alt, 'float_right'); ?>
+        <div>If user's final grade is between <input type="text" class="short_input grade_start" value="<?php echo $range_start; ?>">% and <input type="text" class="short_input grade_end" value="<?php echo $range_end; ?>">%,</div>
+        <div>give letter grade <input type="text" class="short_input grade_letter" value="<?php echo $rank_letter; ?>"> and assign the following rank:</div>
+        <div><input type="text" class="hval grade_rank" value="<?php echo $rank_name; ?>"></div>
       </div>
     </div>
   </li>
-  <script type="text/javascript">
-    $('#<?php echo $main_id; ?>_hider').click();
-  </script>
