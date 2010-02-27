@@ -19,15 +19,17 @@ $(document).ready(function() {
 	
 	//add click handler for the addQuiz feature
 	$('#grading_add').click(addRange);
-	$('#opt_add').click(addOpt);
 	$('#quest_add').click(addQuest);
+	
+	//start the builder with 3 questions
+	for( var i = 0; i < 3; i++ )
+	 addQuest();
+	
 	
 	/*
 	//set default range values if the browser cache didn't fill them in from last time
 	if($('#gr0_start').val() == '')
 		rangeDefVals();
-	
-	addQuestion();
 	
 	//hide everything except for data
 	$('#grading .hide').click();*/
@@ -91,19 +93,19 @@ function addQuest() {
 		
 		//add three options to that question
 	  for (var i = 0; i < 3; i++) {
-		  addOptions(numQuestions);
+		  addOpt(numQuestions);
 	  }
 	});
 }
 
-function addOptions(toQuestion){
+function addOpt(toQuestion){
 	$.loading();
 	$.get('addOption.php', {quest_no: toQuestion, opt_no: numOpts[toQuestion] + 1}, function(data) {
 		//add it to the list of options
 		$('#q' + toQuestion + '_container').append(data);
 				
 		//we got all num options
-		numOpts[toQuestion]+=num;
+		numOpts[toQuestion]++;
 	});
 }
 
