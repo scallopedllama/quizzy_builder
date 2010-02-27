@@ -33,10 +33,13 @@
           }
           echo '</ul>';
         ?>
-        <div class="main" style="width:305px;">
+        <div class="main hide_all_cont" style="width:119px; float:right;">
+          <h2 style="cursor:pointer;" id="hide_all">Hide All</h2>
+        </div>
+        <div class="main" style="width:305px; float:left;">
           <h2 style="cursor:pointer;" id="quest_add">Add another Question</h2>
         </div>
-        <div class="main" style="width:143px; float: right; margin: 100px 0px 100px 0px;">
+        <div class="main" style="width:143px;clear:both; float: right; margin: 100px 0px 100px 0px;">
           <h2 style="cursor:pointer;" id="save">Save Quiz</h2>
         </div>
       </form>

@@ -23,6 +23,11 @@ $(document).ready(function() {
 	
 	//click handler for saving quizzes
 	$('#save').click(save);
+	
+	//click handler for hiding everything
+	$('#hide_all').click(function () {
+		$('.hide').click();
+	});
 	 
 	 //already added 3 questions with 3 opts each so...
 	 for (var i = 0; i < 3; i++) {

@@ -174,118 +174,12 @@ div {
   width: 40px;
 }
 
-/*
-td {
-  vertical-align: top;
+.hide_all_cont {
+  position: fixed;
+  bottom: 5px;
+  right: 5px;
+  font-size: 14pt;
 }
-
-li {
-  list-style:circle;
-}
-
-.col {
-  float: left;
-}
-
-
-.clear {
-  clear: both;
-}
-
-.title {
-  text-align: center;
-  text-decoration: underline;
-}
-
-
-.grading {
-  margin-top: 25px;
-  border: solid 1px #bbb;
-  background: #fbfbfb;
-  width: 700px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  overflow: hidden;
-}
-
-.grading .start, .end, .grade {
-  width: 40px;
-}
-.grading .txt {
-  width: 75%;
-}
-.graderange {
-  overflow: hidden;
-  margin-top: 25px;
-  border: solid 1px #ddd;
-  width: 690px;
-  background: #f8f8f8;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-}
-
-#gr_foot input{
-  width: 70%;
-}
-
-#add_quest {
-  margin-top: 25px;
-  width: 700px;
-}
-
-.pic_opts {
-  border: 1px solid #ccc;
-  background: #eee;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-}
-
-.quest {
-  margin-top: 25px;
-  border: solid 1px #bbb;
-  background: #fbfbfb;
-  width: 700px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  overflow: hidden;
-}
-
-
-
-input{
-  width: 98%;
-}
-
-.opt {
-  overflow: hidden;
-  margin-top: 25px;
-  border: solid 1px #ddd;
-  width: 690px;
-  background: #f8f8f8;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-}
-
-.opt_score {
-  width: 100px;
-  float: right;
-}
-
-.exp {
-  text-align: right;
-}
-.exp p {
-  margin-right: 5px;
-}
-
-.loadsave {
-  margin-top: 75px;
-  width: 700px;
-  text-align: center;
-}
-.loadsave input{
-  width: 45%;
-}*/
 
 /*Loading styling*/
 .loading {
