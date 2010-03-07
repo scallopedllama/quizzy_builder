@@ -33,9 +33,8 @@
           }
           echo '</ul>';
         ?>
-        <div class="main hide_all_cont" style="width:119px; float:right;">
-          <h2 style="cursor:pointer;" id="hide_all">Hide All</h2>
-        </div>
+        <div class="hide_all_cont hide_all" id="hide_all">[Hide All]</div>
+        <div class="hider_all hide_all" id="hide_all_quests" style="margin-top:45px;">[Hide All Questions]</div>
         <div class="main" style="width:305px; float:left;">
           <h2 style="cursor:pointer;" id="quest_add">Add another Question</h2>
         </div>

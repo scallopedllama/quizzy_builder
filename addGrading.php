@@ -13,6 +13,7 @@
         }
       ?>
     </ul>
+    <div class="hider_all hide_all" id="hide_all_grades">[Hide All Grades]</div>
     <div class="sub_sect" style="width:275px;">
       <h2 style="cursor:pointer;" id="grading_add">Add another range</h2>
     </div>

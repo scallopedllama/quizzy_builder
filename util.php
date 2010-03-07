@@ -23,7 +23,11 @@
     <div class="delete" id="<?php echo $id_name; ?>_del">[Delete]</div>
     <script type="text/javascript">addDeleter('<?php echo $id_name; ?>');</script>
 <?php } ?>
-    <script type="text/javascript">addHider('<?php echo $id_name; ?>');</script>
+    <script type="text/javascript">
+      $('#<?php echo $id_name; ?>_hider:first').click(function () {
+        hide('<?php echo $id_name; ?>');
+      });
+    </script>
 <?php
   }
   

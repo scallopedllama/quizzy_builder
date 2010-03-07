@@ -24,6 +24,7 @@
           }
         ?>
       </ul>
+      <div class="hider_all hide_all" id="hide_all_<?php echo $main_id; ?>_opts">[Hide All Options]</div>
       <div class="sub_sect" style="width:275px;">
         <h2 style="cursor:pointer;" id="<?php echo $main_id; ?>_opt_add">Add another option</h2>
       </div>
@@ -32,6 +33,7 @@
             addOpt(<?php echo $quest_no; ?>);
         });
         $('#<?php echo $main_id; ?>_container').sortable({ cursor: 'n-resize', handle: '.sect_head_cont'});
+        $('#hide_all_<?php echo $main_id; ?>_opts').click(function() { hideAll('#hide_all_<?php echo $main_id; ?>_opts', '#<?php echo $main_id; ?>_container ', ' Options'); });
       </script>
     </div>
   </div>
