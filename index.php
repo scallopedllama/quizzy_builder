@@ -18,8 +18,31 @@
         .loading-masked { overflow: visible; }
       </style>
     <![endif]-->
+    <!--[if lte IE 6]>
+      <style type="text/css">
+        #load_exclusive {opacity: 50;}
+      </style>
+    <![endif]-->
+    
+<?php
+  if(isset($_POST['load_xml'])) {
+    echo $_POST['load_xml'];
+    
+    //get an xml string started
+    $xmlstr = <<<XML
+XML;
+    //append the pasted code
+    $xmlstr .= $_POST['load_xml'];
+    
+    //load it up with SimpleXML
+    $xml = new SimpleXMLElement($xmlstr);
+    die(print_r($xml));
+  }
+?>
+    
 	</head>
 	<body>
+    <div id="load_exclusive"></div>
 	  <div id="content">
       <form method="get" action="saveQuiz.php" id="quizzyBuilder" target="_blank">
 
@@ -42,14 +65,24 @@
           <h2 style="cursor:pointer;" id="save">Save Quiz</h2>
         </div>
       </form>
-      <form method="get" action="index.php">
+      <form method="post" action="index.php" id="load_form">
         <div class="main" style="width:143px; float: left; margin: 100px 0px 100px 0px;">
           <h2 style="cursor:pointer;" id="load">Load Quiz</h2>
         </div>
-      </form>
-        <div style="clear: both; margin-top: 100px;">
-          foobar. this was made by me. blah blah.
+        
+        <div class="main" id="load_input">
+          <div class="group_title">Paste your quiz's XML data here</div>
+          <textarea id="load_xml" name="load_xml"></textarea>
+          <div class="sect">
+            <div class="float_right"><h2 style="cursor:pointer;" id="load_load">Load Quiz</h2></div>
+            <div class="float_left"><h2 style="cursor:pointer;" id="load_cancel">Cancel</h2></div>
+          </div>
         </div>
+      </form>
+      
+      <div style="clear: both; margin-top: 100px;">
+        foobar. this was made by me. blah blah.
+      </div>
     </div>
   </body>
 </html>

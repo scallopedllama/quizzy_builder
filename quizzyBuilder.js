@@ -29,25 +29,59 @@ $(document).ready(function() {
 	$('#hide_all_grades').click(function() { hideAll('#hide_all_grades', '.grade_range', ' Grades');	});
   $('#hide_all_quests').click(function() { hideAll('#hide_all_quests', '.question', ' Questions');  });
 	 
+  // load actions
+  setupLoader();
+  
 	 // already added 3 questions with 3 opts each so...
 	 for (var i = 0; i < 3; i++) {
 	 	 numOpts[i] = 2;
 	 }
 });
 
+function setupLoader() {
+  // click handler on the first load button
+  $('#load').click(showLoad);
+  
+  // hide the load input container, then set its height and position
+  $('#load_input')
+    .css('height', ($(window).height() - 100) + 'px')
+    .css('top', ($(window).height() - $('#load_input').height())/2  + 'px');
+    
+  // set the height of the textarea
+  $('#load_input textarea')
+    .css('height', $('#load_input').height() - $('h2').outerHeight(true) - $('.group_title').outerHeight(true));
+}
+
+function showLoad() {
+  // scroll the window up to the top
+  $('html, body').animate({scrollTop: 0}, 1000, function () {
+    // then fade in the background and the container
+    $('#load_input').fadeIn(showSpeed);
+    $('#load_exclusive').fadeIn(showSpeed);
+  });
+  
+  // add click handlers to the second load button and the cancel button
+  $('#load_load').click( function() { $('#load_form').submit(); } );
+  $('#load_cancel').click( hideLoad );
+}
+
+function hideLoad() {
+  // fade out the background and the container
+  $('#load_input').fadeOut(hideSpeed);
+  $('#load_exclusive').fadeOut(hideSpeed);
+}
+
 function hideAll(id, container, text) {
 	// remove all click handlers
 	$(id).unbind();
 	
 	// grab all of the grade_ranges and get their ids into an array
-  console.log(container + '.hide');
 	var hiders = $( container + ' .hide' ).map(getId).get();
 	
 	// hide all of them
 	for (var i in hiders) {
 		// need to get rid of that '_hider' bit on the end of the id.
 		hiders[i] = hiders[i].replace('_hider', '');
-		console.log(hiders[i]);
 		hide(hiders[i]);
 	}
 	
@@ -239,8 +273,6 @@ function save() {
 			// set all the names
 			var sel = '#' + questions[i] + ' #' + opts[j];
 			var name = 'q' + i + '_o' + j;
-			console.log(sel);
-			console.log(name);
 			// option text
 			$(sel + ' .opt_txt').attr('name', name + '_txt');
 			// pic src
