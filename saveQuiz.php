@@ -97,7 +97,7 @@ XML;
         	$type = 'radio';
           break;
         case 'Checkboxes':
-        	$type = 'check';
+        	$type = 'checkbox';
           break;
       }
       $quest->addAttribute('type', $type);

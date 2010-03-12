@@ -26,18 +26,20 @@
     
 <?php
   //check for upload error, make sure it was an xml file
-  if ($_FILES['file']['error'] > 0)
-  {
-    echo '<script type="text/javascript">alert("Error opening uploaded file! Please try again.");</script>';
-  }
-  elseif ($_FILES['file']['type'] != 'text/xml')
-  {
-    echo '<script type="text/javascript">alert("Uploaded file was not an XML file. Please select the quiz XML file to upload.");</script>';
-  }
-  else {
-    //now we know we have the uploaded file in $_FILES['file']['tmp_name'] so go ahead and open it up.
-  	$quiz_XML= simplexml_load_file($_FILES['file']['tmp_name']);
-  	$quiz = $quiz_XML->quiz;
+  if (isset($_FILES['file'])) {
+    if ($_FILES['file']['error'] > 0)
+    {
+      echo '<script type="text/javascript">alert("Error opening uploaded file! Please try again.");</script>';
+    }
+    elseif ($_FILES['file']['type'] != 'text/xml')
+    {
+      echo '<script type="text/javascript">alert("Uploaded file was not an XML file. Please select the quiz XML file to upload.");</script>';
+    }
+    else {
+      //now we know we have the uploaded file in $_FILES['file']['tmp_name'] so go ahead and open it up.
+    	$quiz_XML= simplexml_load_file($_FILES['file']['tmp_name']);
+    	$quiz = $quiz_XML->quiz;
+    }
   }
 ?>
     
