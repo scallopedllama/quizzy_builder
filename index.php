@@ -25,18 +25,19 @@
     <![endif]-->
     
 <?php
-  if(isset($_POST['load_xml'])) {
-    echo $_POST['load_xml'];
-    
-    //get an xml string started
-    $xmlstr = <<<XML
-XML;
-    //append the pasted code
-    $xmlstr .= $_POST['load_xml'];
-    
-    //load it up with SimpleXML
-    $xml = new SimpleXMLElement($xmlstr);
-    die(print_r($xml));
+  //check for upload error, make sure it was an xml file
+  if ($_FILES['file']['error'] > 0)
+  {
+    echo '<script type="text/javascript">alert("Error opening uploaded file! Please try again.");</script>';
+  }
+  elseif ($_FILES['file']['type'] != 'text/xml')
+  {
+    echo '<script type="text/javascript">alert("Uploaded file was not an XML file. Please select the quiz XML file to upload.");</script>';
+  }
+  else {
+    //now we know we have the uploaded file in $_FILES['file']['tmp_name'] so go ahead and open it up.
+  	$quiz_XML= simplexml_load_file($_FILES['file']['tmp_name']);
+  	$quiz = $quiz_XML->quiz;
   }
 ?>
     
@@ -51,7 +52,8 @@ XML;
           include 'addGrading.php';
           
           echo '<ul id="questions_container" class="dragging_container">';
-          for ($i = 0; $i < 3; ++$i) {
+          $to_add_q = isset($quiz) ? count($quiz->question) : 3;
+          for ($i = 0; $i < $to_add_q; ++$i) {
             include 'addQuestion.php';
           }
           echo '</ul>';
@@ -65,14 +67,14 @@ XML;
           <h2 style="cursor:pointer;" id="save">Save Quiz</h2>
         </div>
       </form>
-      <form method="post" action="index.php" id="load_form">
+      <form method="post" action="index.php" id="load_form" enctype="multipart/form-data">
         <div class="main" style="width:143px; float: left; margin: 100px 0px 100px 0px;">
           <h2 style="cursor:pointer;" id="load">Load Quiz</h2>
         </div>
         
         <div class="main" id="load_input">
-          <div class="group_title">Paste your quiz's XML data here</div>
-          <textarea id="load_xml" name="load_xml"></textarea>
+          <div class="group_title">File to Load</div>
+          <input type="file" name="file" id="file" />
           <div class="sect">
             <div class="float_right"><h2 style="cursor:pointer;" id="load_load">Load Quiz</h2></div>
             <div class="float_left"><h2 style="cursor:pointer;" id="load_cancel">Cancel</h2></div>

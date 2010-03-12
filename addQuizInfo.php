@@ -1,12 +1,12 @@
 <?php 
   include_once 'util.php';
   //get stuff passed in get or use default empties
-  $title_txt = isset($_GET['title_txt']) ? $_GET['title_txt'] : '';
-  $title_pic_src = isset($_GET['title_pic_src']) ? $_GET['title_pic_src'] : '';
-  $title_pic_alt = isset($_GET['title_pic_alt']) ? $_GET['title_pic_alt'] : '';
-  $desc_txt = isset($_GET['$desc_txt']) ? $_GET['$desc_txt'] : '';
-  $desc_pic_src = isset($_GET['$desc_pic_src']) ? $_GET['$desc_pic_src'] : '';
-  $desc_pic_alt = isset($_GET['$desc_pic_alt']) ? $_GET['$desc_pic_alt'] : '';
+  $title_txt = isset($quiz) ? addElem($quiz->title) : '';
+  $title_pic_src = isset($quiz) ? addElem($quiz->img['src']) : '';
+  $title_pic_alt = isset($quiz) ? addElem($quiz->img['alt']) : '';
+  $desc_txt = isset($quiz) ? addElem($quiz->description->text) : '';
+  $desc_pic_src = isset($quiz) ? addElem($quiz->description->img['src']) : '';
+  $desc_pic_alt = isset($quiz) ? addElem($quiz->description->img['alt']) : '';
    
 ?>
 

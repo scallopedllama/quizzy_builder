@@ -10,12 +10,12 @@
   
   //this is kind of an ugly hack, but it works.
   $range_no = isset($i) ? $i : $_GET['range_no'];
-  $grade_pic_src = '';
-  $grade_pic_alt = '';
-  $range_start = '';
-  $range_end = '';
-  $rank_name = '';
-  $rank_letter = '';
+  $grade_pic_src = isset($quiz) ? addElem($quiz->grading->range[$range_no]->img['src']) : '';
+  $grade_pic_alt = isset($quiz) ? addElem($quiz->grading->range[$range_no]->img['alt']) : '';
+  $range_start = isset($quiz) ? addElem($quiz->grading->range[$range_no]['start']) : '';
+  $range_end = isset($quiz) ? addElem($quiz->grading->range[$range_no]['end']) : '';
+  $rank_name = isset($quiz) ? addElem($quiz->grading->range[$range_no]->rank) : '';
+  $rank_letter = isset($quiz) ? addElem($quiz->grading->range[$range_no]->grade) : '';
   $main_id = 'grade_range' . $range_no;
 ?>
   <li class="grade_range sub_sect" id="<?php echo $main_id; ?>">

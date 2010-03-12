@@ -3,9 +3,9 @@
   
   $quest_no = isset($i) ? $i : $_GET['quest_no'];
   $main_id = 'q' . $quest_no;
-  $quest_pic_src = '';
-  $quest_pic_alt = '';
-  $quest_txt = '';
+  $quest_pic_src = isset($quiz) ? addElem($quiz->question[$quest_no]->img['src']) : '';
+  $quest_pic_alt = isset($quiz) ? addElem($quiz->question[$quest_no]->img['alt']) : '';
+  $quest_txt = isset($quiz) ? addElem($quiz->question[$quest_no]->text) : '';
 ?>
 
 <div class="main question" id="<?php echo $main_id; ?>">
@@ -19,7 +19,8 @@
     <div class="group">
       <ul id="<?php echo $main_id; ?>_container" class="dragging_container">
         <?php 
-          for ($o=0; $o<3; $o++) {
+          $to_add = isset($quiz) ? count($quiz->question[$quest_no]->option) : 3;
+          for ($o=0; $o < $to_add; $o++) {
             include 'addOption.php'; 
           }
         ?>

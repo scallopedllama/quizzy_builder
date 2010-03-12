@@ -8,7 +8,8 @@
   <div class="sect">
     <ul id="grades_container" class="dragging_container">
       <?php 
-        for ($i=0; $i<5; $i++) {
+        $to_add_r = isset($quiz) ? count($quiz->grading->range) : 5;
+        for ($i=0; $i < $to_add_r; $i++) {
           include 'addRange.php'; 
         }
       ?>

@@ -44,12 +44,8 @@ function setupLoader() {
   
   // hide the load input container, then set its height and position
   $('#load_input')
-    .css('height', ($(window).height() - 100) + 'px')
-    .css('top', ($(window).height() - $('#load_input').height())/2  + 'px');
-    
-  // set the height of the textarea
-  $('#load_input textarea')
-    .css('height', $('#load_input').height() - $('h2').outerHeight(true) - $('.group_title').outerHeight(true));
+    .css('top', ($(window).height() - $('#load_input').height())/2  + 'px')
+    .css('left', ($(window).width() - $('#load_input').width())/2  + 'px');
 }
 
 function showLoad() {

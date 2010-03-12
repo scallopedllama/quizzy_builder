@@ -3,12 +3,13 @@
   
   $quest_no = isset($i) ? $i : $_GET['quest_no'];
   $opt_no = isset($o) ? $o : $_GET['opt_no'];
-  $opt_txt = '';
-  $opt_pic_src = '';
-  $opt_pic_alt = '';
-  $exp_txt = '';
-  $exp_pic_src = '';
-  $exp_pic_alt = '';
+  $opt_xml = $quiz->question[$quest_no]->option[$opt_no];
+  $opt_txt = isset($quiz) ? addElem($opt_xml->text) : '';
+  $opt_pic_src = isset($quiz) ? addElem($opt_xml->img['src']) : '';
+  $opt_pic_alt = isset($quiz) ? addElem($opt_xml->img['alt']) : '';
+  $exp_txt = isset($quiz) ? addElem($opt_xml->explanation->text) : '';
+  $exp_pic_src = isset($quiz) ? addElem($opt_xml->explanation->img['src']) : '';
+  $exp_pic_alt = isset($quiz) ? addElem($opt_xml->explanation->img['alt']) : '';
   
   $main_opt_id = 'q' . $quest_no . '_o' . $opt_no;
 ?>

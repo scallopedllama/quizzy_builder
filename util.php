@@ -31,4 +31,12 @@
 <?php
   }
   
+  //returns the text of the specified element or '' if it is not set.
+  function addElem($what) {
+    if (isset($what))
+      return $what;
+    else
+      return '';
+  }
+  
 ?>
