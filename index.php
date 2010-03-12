@@ -83,7 +83,8 @@
       </form>
       
       <div style="clear: both; margin-top: 100px;">
-        foobar. this was made by me. blah blah.
+        <p>The fields in this form are not validated. Make sure your input make sense.</p>
+        <p><a href="../index.php">Return to quizzy main</a></p>
       </div>
     </div>
   </body>
