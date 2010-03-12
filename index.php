@@ -45,7 +45,7 @@
 	<body>
     <div id="load_exclusive"></div>
 	  <div id="content">
-      <form method="get" action="saveQuiz.php" id="quizzyBuilder" target="_blank">
+      <form method="post" action="saveQuiz.php" id="quizzyBuilder" target="_blank">
 
         <?php 
           include 'addQuizInfo.php'; 

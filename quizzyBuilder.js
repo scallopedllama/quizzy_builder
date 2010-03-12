@@ -257,6 +257,8 @@ function save() {
 		// set the name for the fields
 		// question text
 		$('#' + questions[i] + ' .quest_txt').attr('name', 'q' + i + '_txt');
+    // question type
+    $('#' + questions[i] + ' .quest_type').attr('name', 'q' + i + '_type');
 		
 		// pic src
 		$('#' + questions[i] + ' .quest_pic_src').attr('name', 'q' + i + '_pic_src');
@@ -271,6 +273,8 @@ function save() {
 			var name = 'q' + i + '_o' + j;
 			// option text
 			$(sel + ' .opt_txt').attr('name', name + '_txt');
+      // option score value
+      $(sel + ' .opt_score').attr('name', name + '_score');
 			// pic src
 			$(sel + ' .opt_pic_src').attr('name', name + '_pic_src');
 			// pic alt

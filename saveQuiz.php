@@ -7,24 +7,24 @@
   
   
   //ALL this function does is return the string value of the corresponding variable
-  //in GET. it's useful to keep me from doing $_GET('val') which I've done several times 
+  //in GET. it's useful to keep me from doing $_POST('val') which I've done several times 
   // already.
   function getv($val){
-    return strval($_GET[$val]);
+    return strval($_POST[$val]);
   }
   
   //sees if the indicated $val is set in _GET. like above, this is for my protection
   function gotv($val){
-    return isset($_GET[$val]);
+    return isset($_POST[$val]);
   }
   
   //will see if the user set a picture for the indicated $sel and assigns the proper
   //tags to $parent.
   function addImg($sel, &$parent) {
-    if($_GET[$sel.'_pic_src'] != '') {
+    if($_POST[$sel.'_pic_src'] != '') {
       $img = $parent->addChild('img');
       $img->addAttribute('src', getv($sel.'_pic_src'));
-      if($_GET[$sel.'_pic_alt'] != '')
+      if($_POST[$sel.'_pic_alt'] != '')
         $img->addAttribute('alt', getv($sel.'_pic_alt'));
     }
   }
@@ -47,7 +47,7 @@ XML;
   {
     $desc = $quiz->addChild('description');
 
-    if(isset($_GET['data_desc']))
+    if(isset($_POST['data_desc']))
       $desc->addChild('text', getv('data_desc'));
     
     addImg('quiz_desc', $desc);
@@ -91,6 +91,16 @@ XML;
     {
       $quest = $quiz->addChild('question');
       $quest->addChild('text', getv($qsel.'_txt'));
+      $type = getv($qsel.'_type');
+      switch ($type) {
+        case 'Radio Buttons':
+        	$type = 'radio';
+          break;
+        case 'Checkboxes':
+        	$type = 'check';
+          break;
+      }
+      $quest->addAttribute('type', $type);
       addImg($qsel, $quest);
       
       

@@ -21,7 +21,7 @@
       <div class="group">
         <?php addPic('', 'Option picture', $opt_pic_src, $opt_pic_alt, 'float_right', 'opt_pic'); ?>
         <div class="group_title">Option Text<input type="text" class="hval opt_txt" value="<?php echo $opt_txt; ?>"></div>
-        <div>Gives score <input type="text" class="short_input" value="<?php echo $opt_score; ?>"></div>
+        <div>Gives score <input type="text" class="short_input opt_score" value="<?php echo $opt_score; ?>"></div>
       </div>
       <div class="group">
         <?php addPic('', 'Explanation picture', $exp_pic_src, $exp_pic_alt, 'float_right', 'opt_exp_pic'); ?>
