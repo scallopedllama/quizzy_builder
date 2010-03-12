@@ -39,6 +39,13 @@
       //now we know we have the uploaded file in $_FILES['file']['tmp_name'] so go ahead and open it up.
     	$quiz_XML= simplexml_load_file($_FILES['file']['tmp_name']);
     	$quiz = $quiz_XML->quiz;
+?>
+<script type="text/javascript">
+  loadedQuiz = true;
+  numQuestions = <?php echo count($quiz->question) - 1; ?>;
+  numRanges = <?php echo count($quiz->grading->range) - 1; ?>;
+</script>
+<?php
     }
   }
 ?>

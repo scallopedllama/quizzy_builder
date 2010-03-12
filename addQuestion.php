@@ -15,7 +15,7 @@
     <div class="group">
       <?php addPic('', 'Question picture', $quest_pic_src, $quest_pic_alt, 'float_right', quest_pic); ?>
       <div class="group_title">Question Text <textarea rows="3" cols="82" class="hval quest_txt"><?php echo $quest_txt; ?></textarea></div>
-      <div>Question type: <select class="quest_type"><option>Radio Buttons</option><option>Checkboxes</option></select></div>
+      <!--<div>Question type: <select class="quest_type"><option>Radio Buttons</option><option>Checkboxes</option></select></div>-->
     </div>
     <div class="group">
       <ul id="<?php echo $main_id; ?>_container" class="dragging_container">
@@ -23,6 +23,13 @@
           $to_add = isset($quiz) ? count($quiz->question[$quest_no]->option) : 3;
           for ($o=0; $o < $to_add; $o++) {
             include 'addOption.php'; 
+          }
+          if(isset($quiz)) {
+?>
+      <script type="text/javascript">
+        numOpts[<?php echo $quest_no; ?>] = <?php echo $to_add - 1; ?>;
+      </script>
+<?php
           }
         ?>
       </ul>

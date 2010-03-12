@@ -7,6 +7,7 @@ var hideSpeed = 'def';
 var numQuestions = 2;
 var numOpts = new Array();
 var numRanges = 4;
+var loadedQuiz = false;
  
 // When the document is ready get things goin
 $(document).ready(function() {
@@ -32,10 +33,12 @@ $(document).ready(function() {
   // load actions
   setupLoader();
   
-	 // already added 3 questions with 3 opts each so...
-	 for (var i = 0; i < 3; i++) {
-	 	 numOpts[i] = 2;
-	 }
+	 // init the numOpts array if it isn't already
+   if(!loadedQuiz) {
+		 for (var i = 0; i < 3; i++) {
+		 	 numOpts[i] = 2;
+		 }
+   }
 });
 
 function setupLoader() {
