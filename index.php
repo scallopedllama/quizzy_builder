@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 	<head>
-		<title>quizzy builder!</title>
+		<title>Make your own quizzy quiz</title>
     <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
     <!--don't even give IE8 the option for wonky-mode.-->
     <META http-equiv="X-UA-Compatible" content="IE=8"/>
