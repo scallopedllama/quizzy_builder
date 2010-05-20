@@ -56,6 +56,11 @@
 	  <div id="content">
       <form method="post" action="saveQuiz.php" id="quizzyBuilder" target="_blank">
 
+        <div id="note">
+          <h3><span class="new">New</span> Beta Version</h3>
+          <p>In this new version of the quizzy builder, you can now re-arrange questions and their options by simply clicking and dragging the element. You can also load up a previously created quiz by clicking 'Load Quiz' below.</p>
+          <p>Since this is a beta version, you may run into some problems. Please report all issues to our <a href="https://sourceforge.net/apps/trac/quizzy/wiki/WikiStart">Trac</a>.</p>
+        </div>
         <?php 
           include 'addQuizInfo.php'; 
           include 'addGrading.php';
@@ -92,9 +97,10 @@
       </form>
       
       <div style="clear: both; margin-top: 100px;">
-        <p>The fields in this form are not validated. Make sure your input make sense.</p>
+        <p>The fields in this form are not validated. Make sure your input makes sense.</p>
         <p><a href="../index.php">Return to quizzy main</a></p>
       </div>
+      
     </div>
   </body>
 </html>
