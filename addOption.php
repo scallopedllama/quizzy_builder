@@ -1,68 +1,48 @@
 <?php
-	/*
-	 * DESCRIPTION: 
-	 * 	 used to add an option to the quizzyBuilder
-	 * 
-	 * PARAMETERS passed in GET:
-	 *  _GET['questNo']        current question being worked on
-	 *  _GET['optNo']          the index of the option TO RETURN
-	 *  _GET['numAdd']         number of options to return
-	 */
-  
-  $questNo = intval($_GET['questNo']);
-  $optNo = intval($_GET['optNo']);
-  $numAdd = intval($_GET['numAdd']);
-  
-  
-  function addOptInput($questNo, $optNo, $type, $field, $class = ''){
-    echo '<input type="'.$type.'"';
-    echo ' id="q'.$questNo.'_o'.$optNo.'_'.$field.'"';
-    echo ' name="q'.$questNo.'_o'.$optNo.'_'.$field.'"';
-    echo ' class="'.$class.'"';
-    echo ' width="100%"';
-    echo '>';
-  }
-  
-  $goal = $optNo + $numAdd;
-  for(; $optNo < $goal; $optNo++)
-  {
+  /*
+   * This file is part of quizzyBuilder.
+   *
+   * quizzyBuilder is free software: you can redistribute it and/or modify
+   * it under the terms of the GNU Affero General Public License as
+   * published by the Free Software Foundation, either version 3 of
+   * the License, or (at your option) any later version.
+   *
+   * quizzyBuilder is distributed in the hope that it will be useful,
+   * but WITHOUT ANY WARRANTY; without even the implied warranty of
+   * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   * GNU Affero General Public License for more details.
+   *
+   * You should have received a copy of the GNU Affero General Public
+   * License along with quizzyBuilder. If not, see <http://www.gnu.org/licenses/>.
+   */
+
+  include_once 'util.php';
+
+  $quest_no = isset($i) ? $i : $_GET['quest_no'];
+  $opt_no = isset($o) ? $o : $_GET['opt_no'];
+  $opt_xml = $quiz->question[$quest_no]->option[$opt_no];
+  $opt_txt = isset($quiz) ? addElem($opt_xml->text) : '';
+  $opt_pic_src = isset($quiz) ? addElem($opt_xml->img['src']) : '';
+  $opt_pic_alt = isset($quiz) ? addElem($opt_xml->img['alt']) : '';
+  $opt_score = isset($quiz) ? addElem($opt_xml->score) : '';
+  $exp_txt = isset($quiz) ? addElem($opt_xml->explanation->text) : '';
+  $exp_pic_src = isset($quiz) ? addElem($opt_xml->explanation->img['src']) : '';
+  $exp_pic_alt = isset($quiz) ? addElem($opt_xml->explanation->img['alt']) : '';
+
+  $main_opt_id = 'q' . $quest_no . '_o' . $opt_no;
 ?>
-<tr>
-  <td>
-    <div class="opt hidden" id="<?php echo 'q'.$questNo.'_o'.$optNo.'_hidden'; ?>">
-      <div><?php echo 'Option '.($optNo + 1); ?>:&nbsp;</div>
-      <div class="value"></div>
-      <span class="show">[Show Details]</span>
+  <li class="sub_sect quest_opt" id="<?php echo $main_opt_id; ?>">
+    <?php addHider($main_opt_id, TRUE); ?>
+    <div class="sect_head_cont"><div class="sect_head">↕ Option </div><div id="<?php echo $main_opt_id; ?>_hval" class="hval_cont">Data</div></div>
+    <div class="sect">
+      <div class="group">
+        <?php addPic('', 'Option picture', $opt_pic_src, $opt_pic_alt, 'float_right', 'opt_pic'); ?>
+        <div class="group_title">Option Text<input type="text" class="hval opt_txt" value="<?php echo $opt_txt; ?>"></div>
+        <div>Gives score <input type="text" class="short_input opt_score" value="<?php echo $opt_score; ?>"></div>
+      </div>
+      <div class="group">
+        <?php addPic('', 'Explanation picture', $exp_pic_src, $exp_pic_alt, 'float_right', 'opt_exp_pic'); ?>
+        <div class="group_title">Explanation Text <textarea rows="3" cols="81" class="opt_exp"><?php echo $exp_txt; ?></textarea></div>
+      </div>
     </div>
-    <table class="opt" id="<?php echo 'q'.$questNo.'_o'.$optNo; ?>" cellspacing="5px">
-      <tr>
-        <td width="60%">
-          <span class="hide">[Hide Details]</span>
-          <p class="title opt_title">Option Text:</p>
-          <ul><li>
-            <?php addOptInput($questNo, $optNo, 'text', 'txt', 'opt_txt'); ?><br>
-            <u>Score assigned if user picks this option:</u><br>
-            <?php addOptInput($questNo, $optNo, 'text', 'score', 'opt_score number'); ?>
-          </li></ul>
-        </td>
-        <td width="40%" class="pic_opts">
-          <p class="title">This Option's Picture</p>
-          <p>Src: <?php addOptInput($questNo, $optNo, 'text', 'pic_src', 'pic_src'); ?></p> 
-          <p>Alt: <?php addOptInput($questNo, $optNo, 'text', 'pic_alt', 'pic_alt'); ?> </p>
-        </td>
-      </tr>
-      <tr>
-        <td class="exp">
-          <p><u>Explanation of the scoring for this Option:</u></p>
-          <?php echo '<textarea rows="6" cols="50" id="q'.$questNo.'_o'.$optNo.'_exp_txt"></textarea>'; ?></td>
-        <td class="pic_opts">
-          <p class="title">The Explanation's Picture</p>
-          <p>Src: <?php addOptInput($questNo, $optNo, 'text', 'exp_pic_src', 'pic_src'); ?></p>
-          <p>Alt: <?php addOptInput($questNo, $optNo, 'text', 'exp_pic_alt', 'pic_src'); ?></p>
-        </td>
-      </tr>
-    </table>
-  </td>
-</tr>
-  
-<?php } ?>
+  </li>

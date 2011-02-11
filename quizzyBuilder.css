@@ -1,145 +1,249 @@
-p{
-  margin: 1px;
-}
-
-td {
-  vertical-align: top;
-}
-
-li {
-  list-style:circle;
-}
-
-.col {
-  float: left;
-}
-
-
-.clear {
-  clear: both;
-}
-
-.title {
+/*
+ * This file is part of quizzyBuilder.
+ *
+ * quizzyBuilder is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of
+ * the License, or (at your option) any later version.
+ *
+ * quizzyBuilder is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public
+ * License along with quizzyBuilder. If not, see <http://www.gnu.org/licenses/>.
+ */
+/*
+  * * { outline: 2px dotted green }
+  * * * { outline: 2px dotted orange }
+  * * * * { outline: 2px dotted blue }
+  * * * * * { outline: 1px solid red }
+  * * * * * * { outline: 1px solid green }
+  * * * * * * * { outline: 1px solid orange }
+  * * * * * * * * { outline: 1px solid blue }
+*/
+body {
   text-align: center;
+}
+
+h2 {
+  color: #0040E2;
+  margin: 5px;
+}
+
+h2:hover {
   text-decoration: underline;
 }
 
-.data {
-  margin-top: 25px;
-  border: solid 1px #bbb;
-  background: #fbfbfb;
-  width: 700px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  overflow: hidden;
+#note {
+  text-align: center;
 }
 
-
-.grading {
-  margin-top: 25px;
-  border: solid 1px #bbb;
-  background: #fbfbfb;
-  width: 700px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  overflow: hidden;
+h3 {
+  font-weight: normal;
+  font-size: 48pt;
+  margin: 0px;
 }
 
-.grading .start, .end, .grade {
-  width: 40px;
-}
-.grading .txt {
-  width: 75%;
-}
-.graderange {
-  overflow: hidden;
-  margin-top: 25px;
-  border: solid 1px #ddd;
-  width: 690px;
-  background: #f8f8f8;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
+.new {
+  color: #07C607;
 }
 
-#gr_foot input{
-  width: 70%;
+ul {
+  padding: 0px;
 }
 
-#add_quest {
-  margin-top: 25px;
-  width: 700px;
+a {
+  color: #0040E2;
+  text-decoration: none;
 }
 
-.pic_opts {
-  border: 1px solid #ccc;
-  background: #eee;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
+a:hover{
+  color: #0040E2;
+  text-decoration: underline;
 }
 
-.quest {
-  margin-top: 25px;
-  border: solid 1px #bbb;
-  background: #fbfbfb;
-  width: 700px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  overflow: hidden;
+a:visited {
+  color: #0040E2;
 }
 
-.hide {
-  float:right;
-  font-size: smaller;
-  color: #400;
-}
-
-.hidden div {
-  float: left;
-}
-.hidden .value {
-  width: 70%;
-  overflow: hidden;
-}
-
-.show {
-  float:right;
-  font-size: smaller;
-  color: #040;
+a:active {
+  color: #0036C0;
 }
 
 input{
   width: 98%;
 }
 
-.opt {
+#content {
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 265px;
+  width: 850px;
+
+  background: #FFF url('logo.png') no-repeat top left;
+  text-align: left;
+  font-family: sans-serif;
+}
+
+p{
+  margin: 1px;
+}
+
+ div {
+}
+
+.float_right {
+  float: right;
+}
+
+.float_left {
+  float: left;
+}
+
+.group {
+  clear:both;
+  width: 100%;
+}
+
+.hider, .hider_all {
+  margin-top: 6px;
+  margin-right: 7px;
+  float:right;
+  font-size: smaller;
+  width: auto;
+  cursor:pointer;
+}
+
+.hider_all {
+  margin-top: 20px;
+}
+
+.hide, .hide:hover, .hide_all, .hide_all:hover {
+  color: #400;
+}
+
+.show, .show:hover , .show_all, .show_all:hover {
+  color: #040;
+}
+
+.delete {
+  margin-top: 6px;
+  margin-right: 7px;
+  float:right;
+  font-size: smaller;
+  width: auto;
+  cursor:pointer;
+  color: #400;
+}
+
+.hval_cont {
+  width: 530px;
   overflow: hidden;
+}
+
+.main {
+  width: 850px;
   margin-top: 25px;
-  border: solid 1px #ddd;
-  width: 690px;
-  background: #f8f8f8;
+  padding: 3px;
+  border: solid 1px #bbb;
+  background: #fbfbfb;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
 }
 
-.opt_score {
-  width: 100px;
-  float: right;
+.sect {
+  width: 100%;
+  clear: both;
 }
 
-.exp {
-  text-align: right;
+.sub_sect {
+  width: 841px;
+  margin-top: 5px;
+  padding: 3px;
+  border: solid 1px #bbb;
+  background: #ededed;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
 }
-.exp p {
+
+.sect_head_cont {
+  width: 850px;
+  padding: 3px;
+  font-size: 14pt;
+}
+
+.sect_head {
+  width: auto;
+  float: left;
   margin-right: 5px;
 }
 
-.loadsave {
-  margin-top: 75px;
-  width: 700px;
-  text-align: center;
+.pic {
+  width: 245px;
+  font-size: 9pt;
+  margin-bottom: 10px;
 }
-.loadsave input{
-  width: 45%;
+
+.pic input {
+  width: 80%;
+  height: 9pt;
+  font-size: 8pt;
+}
+
+.group_title {
+  font-size: 12pt;
+  text-align: center;
+  text-decoration: underline;
+}
+
+div.group_title {
+  width: 600px;
+}
+
+.dragging_container {
+  padding: 0px;
+  list-style: none;
+}
+
+.short_input {
+  width: 40px;
+}
+
+.hide_all_cont {
+  font-size: smaller;
+  position: fixed;
+  bottom: 5px;
+  right: 5px;
+  float:right;
+  cursor:pointer;
+  margin-top: 45px;
+  margin-left: 15px;
+}
+
+#load_exclusive {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width:100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.5;
+  margin: 0px;
+  display: none;
+}
+
+#load_input {
+  position: absolute;
+  display: none;
+  clear:both;
+  width:auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+#load_input .group_title {
+  width: 100%;
 }
 
 /*Loading styling*/

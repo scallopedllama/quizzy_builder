@@ -1,13 +1,32 @@
+<?php
+  /*
+   * This file is part of quizzyBuilder.
+   *
+   * quizzyBuilder is free software: you can redistribute it and/or modify
+   * it under the terms of the GNU Affero General Public License as
+   * published by the Free Software Foundation, either version 3 of
+   * the License, or (at your option) any later version.
+   *
+   * quizzyBuilder is distributed in the hope that it will be useful,
+   * but WITHOUT ANY WARRANTY; without even the implied warranty of
+   * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   * GNU Affero General Public License for more details.
+   *
+   * You should have received a copy of the GNU Affero General Public
+   * License along with quizzyBuilder. If not, see <http://www.gnu.org/licenses/>.
+   */
+?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 	<head>
-		<title>quizzy builder!</title>
+		<title>Make your own quizzy quiz</title>
     <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
     <!--don't even give IE8 the option for wonky-mode.-->
     <META http-equiv="X-UA-Compatible" content="IE=8"/>
-    
-    <script type="text/javascript" src="../quizzy/lib/jquery-1.3.2.js"></script>
+
+    <script type="text/javascript" src="lib/jquery-1.4.2.js"></script>
     <script type="text/javascript" src="../quizzy/lib/jquery.loading.js"></script>
+    <script type="text/javascript" src="lib/jquery-ui-1.7.2.custom.min.js"></script>
     <script type="text/javascript" src="quizzyBuilder.js" charset="utf-8"></script>
     <link rel="stylesheet" type="text/css" href="quizzyBuilder.css" charset="utf-8">
 
@@ -17,89 +36,88 @@
         .loading-masked { overflow: visible; }
       </style>
     <![endif]-->
+    <!--[if lte IE 6]>
+      <style type="text/css">
+        #load_exclusive {opacity: 50;}
+      </style>
+    <![endif]-->
+
+<?php
+  //check for upload error, make sure it was an xml file
+  if (isset($_FILES['file'])) {
+    if ($_FILES['file']['error'] > 0)
+    {
+      echo '<script type="text/javascript">alert("Error opening uploaded file! Please try again.");</script>';
+    }
+    elseif ($_FILES['file']['type'] != 'text/xml')
+    {
+      echo '<script type="text/javascript">alert("Uploaded file was not an XML file. Please select the quiz XML file to upload.");</script>';
+    }
+    else {
+      //now we know we have the uploaded file in $_FILES['file']['tmp_name'] so go ahead and open it up.
+    	$quiz_XML= simplexml_load_file($_FILES['file']['tmp_name']);
+    	$quiz = $quiz_XML->quiz;
+?>
+<script type="text/javascript">
+  loadedQuiz = true;
+  numQuestions = <?php echo count($quiz->question) - 1; ?>;
+  numRanges = <?php echo count($quiz->grading->range) - 1; ?>;
+</script>
+<?php
+    }
+  }
+?>
+
 	</head>
 	<body>
-    <form method="get" action="saveQuiz.php" id="quizzyBuilder">
-      <!--quiz data container-->
-      <div class="data hidden" id="data_hidden">
-        <div>Quiz:&nbsp;</div>
-        <div class="value"></div>
-        <span class="show">[Show Details]</span>
+    <div id="load_exclusive"></div>
+	  <div id="content">
+      <form method="post" action="saveQuiz.php" id="quizzyBuilder" target="_blank">
+
+        <div id="note">
+          <p>You can now re-arrange questions and their options by simply clicking and dragging the element. You can also load up a previously created quiz by clicking 'Load Quiz' below.</p>
+          <p>If you encounter any problems, please report all issues to our <a href="https://sourceforge.net/apps/trac/quizzy/wiki/WikiStart">Trac</a>.</p>
+        </div>
+        <?php
+          include 'addQuizInfo.php';
+          include 'addGrading.php';
+
+          echo '<ul id="questions_container" class="dragging_container">';
+          $to_add_q = isset($quiz) ? count($quiz->question) : 3;
+          for ($i = 0; $i < $to_add_q; ++$i) {
+            include 'addQuestion.php';
+          }
+          echo '</ul>';
+        ?>
+        <div class="hide_all_cont hide_all" id="hide_all">[Hide All]</div>
+        <div class="hider_all hide_all" id="hide_all_quests" style="margin-top:45px;">[Hide All Questions]</div>
+        <div class="main" style="width:305px; float:left;">
+          <h2 style="cursor:pointer;" id="quest_add">Add another Question</h2>
+        </div>
+        <div class="main" style="width:143px;clear:both; float: right; margin: 100px 0px 100px 0px;">
+          <h2 style="cursor:pointer;" id="save">Save Quiz</h2>
+        </div>
+      </form>
+      <form method="post" action="index.php" id="load_form" enctype="multipart/form-data">
+        <div class="main" style="width:143px; float: left; margin: 100px 0px 100px 0px;">
+          <h2 style="cursor:pointer;" id="load">Load Quiz</h2>
+        </div>
+
+        <div class="main" id="load_input">
+          <div class="group_title">File to Load</div>
+          <input type="file" name="file" id="file" />
+          <div class="sect">
+            <div class="float_right"><h2 style="cursor:pointer;" id="load_load">Load Quiz</h2></div>
+            <div class="float_left"><h2 style="cursor:pointer;" id="load_cancel">Cancel</h2></div>
+          </div>
+        </div>
+      </form>
+
+      <div style="clear: both; margin-top: 100px;">
+        <p>The fields in this form are not validated. Make sure your input makes sense.</p>
+        <p><a href="../index.php">Return to quizzy main</a></p>
       </div>
-      <table class="data" id="data" cellspacing="5px">
-        <tr>
-          <td colspan="2">
-            <span class="hide">[Hide Details]</span>
-            <p class="title">Quiz Data</p>
-          </td>
-        </tr>
-        <tr>
-          <td width="60%">
-            <p>Quiz Title: <input type="text"name="data_txt"  id="data_txt"></p> 
-            <p>Description:<textarea rows="6" cols="55" name="data_desc" id="data_desc"></textarea></p> 
-            
-          </td>
-          <td width="40%" class="pic_opts">
-            <p class="title">Description's Picture:</p>
-            <p>Src: <input type="text" name="data_pic_src" id="data_pic_src" class="pic_src"></p> 
-            <p>Alt: <input type="text" name="data_pic_alt" id="data_pic_alt" class="pic_alt"></p>
-          </td>
-        </tr>
-      </table>
-      
-      <!--grading container-->
-      <div class="grading hidden" id="grading_hidden">
-        <span class="show">[Show Details]</span>
-        <p>Grading</p>
-      </div>
-      <table class="grading" id="grading" cellspacing="5px">
-        <tr>
-          <td colspan="2">
-            <span class="hide">[Hide Details]</span>
-            <p class="title">Grading</p>
-          </td>
-        </tr>
-        <tr>
-          <td id="grading_c" colspan="2">
-            <script type="text/javascript">
-              //need to add cilck handeler for the whole before the parts
-	            addHideClick('#grading');
-            </script>
-            <?php
-              $startIndex = 0;
-              $numAdd = 5;
-              include 'addRange.php';
-            ?>
-            <script type="text/javascript">
-              //show/hid click handlers for the grades
-              for(var i = 0; i < 5; i++)
-                addHideClick('#gr' + i);
-            </script>
-          </td>
-        </tr>
-        <tr id="gr_foot">
-          <td><input type="button" id="use_def" value="Default Values" onClick="rangeDefVals();"></td>
-          <td align="right"><input type="button" id="add_range" value="Add Another Grade"></td>
-         </td>
-        </tr>
-      </table>
-  
-      <!--questions container-->
-      <div id="qs"></div>
-      <div>
-        <input type="button" id="add_quest" value="Add Another Question">
-      </div>
-      
-      <div class="loadsave">
-        <input type="button" id="load_quiz" onClick="alert('Coming soon!');" value="Load Quiz"> &nbsp; &nbsp;
-        <input type="submit" id="save_quiz" value="Save Quiz">
-      </div>
-    </form>
-    <p>Note: If a grade's start value is empty, that grade will be ignored. 
-    <br>For each question, either a question text or picture must be specified or that question will be ignored. 
-    <br>Finally, question options that don't have either a text or picture set will be ignored.</p> 
-    <p>This form is not validated so make sure the values you entered make sense.</p> 
-    <p>The quizzyBuilder is still pretty rough. I'm actively working on a new and improved version that looks slick. Stay tuned!</p>
-    <p><a href="http://sourceforge.net/projects/quizzy/files">Click here</a> to download the current stable version of quizzy</p>
+
+    </div>
   </body>
 </html>
