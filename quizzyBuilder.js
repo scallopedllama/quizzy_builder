@@ -3,36 +3,36 @@
  */
 
 var showSpeed = 'def';
-var hideSpeed = 'def';
+var hideSpeed = 'slow';
 var numQuestions = 2;
 var numOpts = new Array();
 var numRanges = 4;
 var loadedQuiz = false;
- 
+
 // When the document is ready get things goin
 $(document).ready(function() {
 	// all loading stuff is triggered by ajax
 	$.loading.onAjax = true;
-	
+
 	// make sortable stuff sortable
 	$('#grades_container').sortable({ cursor: 'n-resize', handle: '.sect_head_cont'});
   $('#questions_container').sortable({ cursor: 'n-resize', handle: '.sect_head_cont:first'});
-	
+
 	// add click handler for adding quizRanges and Questions
 	$('#grading_add').click(addRange);
 	$('#quest_add').click(addQuest);
-	
+
 	// click handler for saving quizzes
 	$('#save').click(save);
-	
+
 	// click handlers for hiding stuff
 	$('#hide_all').click(function() { hideAll('#hide_all', '', ''); });
 	$('#hide_all_grades').click(function() { hideAll('#hide_all_grades', '.grade_range', ' Grades');	});
   $('#hide_all_quests').click(function() { hideAll('#hide_all_quests', '.question', ' Questions');  });
-	 
+
   // load actions
   setupLoader();
-  
+
 	 // init the numOpts array if it isn't already
    if(!loadedQuiz) {
 		 for (var i = 0; i < 3; i++) {
@@ -44,7 +44,7 @@ $(document).ready(function() {
 function setupLoader() {
   // click handler on the first load button
   $('#load').click(showLoad);
-  
+
   // hide the load input container, then set its height and position
   $('#load_input')
     .css('top', ($(window).height() - $('#load_input').height())/2  + 'px')
@@ -58,7 +58,7 @@ function showLoad() {
     $('#load_input').fadeIn(showSpeed);
     $('#load_exclusive').fadeIn(showSpeed);
   });
-  
+
   // add click handlers to the second load button and the cancel button
   $('#load_load').click( function() { $('#load_form').submit(); } );
   $('#load_cancel').click( hideLoad );
@@ -73,24 +73,24 @@ function hideLoad() {
 function hideAll(id, container, text) {
 	// remove all click handlers
 	$(id).unbind();
-	
+
 	// grab all of the grade_ranges and get their ids into an array
 	var hiders = $( container + ' .hide' ).map(getId).get();
-	
+
 	// hide all of them
 	for (var i in hiders) {
 		// need to get rid of that '_hider' bit on the end of the id.
 		hiders[i] = hiders[i].replace('_hider', '');
 		hide(hiders[i]);
 	}
-	
-  // then fade out the hider 
+
+  // then fade out the hider
 	$(id).fadeOut(hideSpeed, function() {
 		// change click handler
 		$(id).click(function () {
 			showAll(id, container, text);
 		});
-		
+
     // change the hider's text, change its class show it and change its click handeler
     $(id).html('[Show All' + text + ']').removeClass('hide').addClass('show').fadeIn(showSpeed);
 	});
@@ -99,24 +99,24 @@ function hideAll(id, container, text) {
 function showAll(id, container, text) {
 	// remove all click handlers
 	$(id).unbind();
-	
+
 	// grab all of the grade_ranges and get their ids into an array
 	var showers = $( container + ' .show' ).map(getId).get();
-	
+
 	// hide all of them
 	for (var i in showers) {
 		// need to get rid of that '_hider' bit on the end of the id.
 		showers[i] = showers[i].replace('_hider', '');
 		show(showers[i]);
 	}
-	
-  // then fade out the hider 
+
+  // then fade out the hider
 	$(id).fadeOut(hideSpeed, function() {
 		// change click handler
 		$(id).click(function () {
 			hideAll(id, container, text);
 		});
-		
+
     // change the hider's text, change its class show it and change its click handeler
     $(id).html('[Hide All' + text + ']').removeClass('show').addClass('hide').fadeIn(showSpeed);
 	});
@@ -127,7 +127,7 @@ function addRange() {
 	$.get('addRange.php', {range_no: numRanges + 1}, function(data) {
 		// add to end of grade ranges
 		$('#grades_container').append(data);
-		
+
 		// increment number of ranges
 		numRanges++;
 	});
@@ -135,12 +135,12 @@ function addRange() {
 
 function addQuest() {
 	$.loading();
-	
+
   numQuestions++;
 	$.get('addQuestion.php', {quest_no: numQuestions}, function(data) {
 		// add that question to the questions list
 		$('#questions_container').append(data);
-		
+
 		// init its options entry in that array
 		numOpts[numQuestions] = 3;
 	});
@@ -160,7 +160,7 @@ function hide(id) {
 	// Don't do anything if it's already hidden
 	if ($('#' + id + '_hider:first').hasClass('show'))
 		return;
-		
+
 	// Remove all click handlers
 	$('#' + id + '_hider:first').unbind();
    // grab all the children divs of id where their class is not sect_head and slide them up
@@ -173,14 +173,14 @@ function hide(id) {
 		  $(this).html("'" + $('#' + id + ' .hval').attr('value') + "'");
 		  $(this).fadeIn(showSpeed);
 		});
-			
-    // then fade out the hider 
+
+    // then fade out the hider
 		$('#' + id + '_hider').fadeOut(hideSpeed, function() {
 			// change click handler
 			$('#' + id + '_hider:first').click(function () {
 				show(id, oldHval);
 			});
-			
+
       // change the hider's text, change its class show it and change its click handeler
       $('#' + id + '_hider').html('[Show]').removeClass('hide').addClass('show').fadeIn(showSpeed);
 		});
@@ -191,10 +191,10 @@ function show(id, oldHval) {
 	// Don't do anything if it's already shown
 	if ($('#' + id + '_hider:first').hasClass('hide'))
 		return;
-		
+
 	// remove all click handlers
 	$('#' + id + '_hider:first').unbind();
-	
+
    // grab all the children divs of id where their class is not sect_head and slide them up
   $('#' + id + ' > .sect').slideDown(hideSpeed, function(){
       // fade out the id_hval, change its contents, and fade it back in
@@ -203,8 +203,8 @@ function show(id, oldHval) {
         $(this).html(oldHval);
         $(this).fadeIn(showSpeed);
       });
-      
-    // then fade out the hider 
+
+    // then fade out the hider
     $('#' + id + '_hider').fadeOut(hideSpeed, function() {
     	// change its click handeler
 			$('#' + id + '_hider:first').click(function () {
@@ -219,13 +219,14 @@ function show(id, oldHval) {
 function addDeleter(id) {
 	// add click handler
 	$('#' + id + '_del').click(function() {
+    console.info(id);
 		// make sure they do want to
 		var answer = confirm('Are you sure you want to delete this? You cannot undo this.');
-		
+
 		if(answer) {
 			// remove it
-			$(this).parent().fadeOut(hideSpeed, function() {
-				$(this).parent().remove();
+			$('#' + id).slideUp(hideSpeed, function() {
+				$('#' + id).remove();
 			});
 		}
 	});
@@ -235,7 +236,7 @@ function addDeleter(id) {
 function save() {
 	// essentially, we need to loop through all the quiz ranges, questions, and the questions' options
 	// setting names for everything. then we can submit the form.
-	
+
 	// grab all of the grade_ranges and get their ids into an array
 	var gradeStarts = $('.grade_range').map(getId).get();
 	for (var i in gradeStarts) {
@@ -253,7 +254,7 @@ function save() {
 		// pic alt
 		$('#' + gradeStarts[i] + ' .pic_alt').attr('name', 'gr' + i + '_pic_alt');
 	}
-	
+
 	// grab all of the questions and get their ids into an array
 	var questions = $('.question').map(getId).get();
 	for(var i in questions) {
@@ -262,12 +263,12 @@ function save() {
 		$('#' + questions[i] + ' .quest_txt').attr('name', 'q' + i + '_txt');
     // question type
     $('#' + questions[i] + ' .quest_type').attr('name', 'q' + i + '_type');
-		
+
 		// pic src
 		$('#' + questions[i] + ' .quest_pic_src').attr('name', 'q' + i + '_pic_src');
 		// pic alt
 		$('#' + questions[i] + ' .quest_pic_alt').attr('name', 'q' + i + '_pic_alt');
-		
+
 		// get all the options for this question and get their ids into an array
 		var opts = $('#' + questions[i] + ' .quest_opt').map(getId).get();
 		for(var j in opts) {
@@ -290,7 +291,7 @@ function save() {
 			$(sel + ' .opt_exp_pic_alt').attr('name', name + '_opt_pic_alt');
 		}
 	}
-	
+
 	// everything is properly named now. Just need to submit the form.
 	$('#quizzyBuilder').submit();
 }
