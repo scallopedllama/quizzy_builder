@@ -232,7 +232,6 @@ function show(id, oldHval) {
 function addDeleter(id) {
 	// add click handler
 	$('#' + id + '_del').click(function() {
-    console.info(id);
 		// make sure they do want to
 		var answer = confirm('Are you sure you want to delete this? You cannot undo this.');
 
