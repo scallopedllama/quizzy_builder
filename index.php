@@ -1,3 +1,21 @@
+<?php
+  /*
+   * This file is part of quizzyBuilder.
+   *
+   * quizzyBuilder is free software: you can redistribute it and/or modify
+   * it under the terms of the GNU Affero General Public License as
+   * published by the Free Software Foundation, either version 3 of
+   * the License, or (at your option) any later version.
+   *
+   * quizzyBuilder is distributed in the hope that it will be useful,
+   * but WITHOUT ANY WARRANTY; without even the implied warranty of
+   * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   * GNU Affero General Public License for more details.
+   *
+   * You should have received a copy of the GNU Affero General Public
+   * License along with quizzyBuilder. If not, see <http://www.gnu.org/licenses/>.
+   */
+?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 	<head>
@@ -5,7 +23,7 @@
     <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
     <!--don't even give IE8 the option for wonky-mode.-->
     <META http-equiv="X-UA-Compatible" content="IE=8"/>
-    
+
     <script type="text/javascript" src="lib/jquery-1.4.2.js"></script>
     <script type="text/javascript" src="../quizzy/lib/jquery.loading.js"></script>
     <script type="text/javascript" src="lib/jquery-ui-1.7.2.custom.min.js"></script>
@@ -23,7 +41,7 @@
         #load_exclusive {opacity: 50;}
       </style>
     <![endif]-->
-    
+
 <?php
   //check for upload error, make sure it was an xml file
   if (isset($_FILES['file'])) {
@@ -49,7 +67,7 @@
     }
   }
 ?>
-    
+
 	</head>
 	<body>
     <div id="load_exclusive"></div>
@@ -57,14 +75,13 @@
       <form method="post" action="saveQuiz.php" id="quizzyBuilder" target="_blank">
 
         <div id="note">
-          <h3><span class="new">New</span> Beta Version</h3>
-          <p>In this new version of the quizzy builder, you can now re-arrange questions and their options by simply clicking and dragging the element. You can also load up a previously created quiz by clicking 'Load Quiz' below.</p>
-          <p>Since this is a beta version, you may run into some problems. Please report all issues to our <a href="https://sourceforge.net/apps/trac/quizzy/wiki/WikiStart">Trac</a>.</p>
+          <p>You can now re-arrange questions and their options by simply clicking and dragging the element. You can also load up a previously created quiz by clicking 'Load Quiz' below.</p>
+          <p>If you encounter any problems, please report all issues to our <a href="https://sourceforge.net/apps/trac/quizzy/wiki/WikiStart">Trac</a>.</p>
         </div>
-        <?php 
-          include 'addQuizInfo.php'; 
+        <?php
+          include 'addQuizInfo.php';
           include 'addGrading.php';
-          
+
           echo '<ul id="questions_container" class="dragging_container">';
           $to_add_q = isset($quiz) ? count($quiz->question) : 3;
           for ($i = 0; $i < $to_add_q; ++$i) {
@@ -85,7 +102,7 @@
         <div class="main" style="width:143px; float: left; margin: 100px 0px 100px 0px;">
           <h2 style="cursor:pointer;" id="load">Load Quiz</h2>
         </div>
-        
+
         <div class="main" id="load_input">
           <div class="group_title">File to Load</div>
           <input type="file" name="file" id="file" />
@@ -95,12 +112,12 @@
           </div>
         </div>
       </form>
-      
+
       <div style="clear: both; margin-top: 100px;">
         <p>The fields in this form are not validated. Make sure your input makes sense.</p>
         <p><a href="../index.php">Return to quizzy main</a></p>
       </div>
-      
+
     </div>
   </body>
 </html>

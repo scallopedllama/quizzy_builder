@@ -1,6 +1,23 @@
 <?php
+  /*
+   * This file is part of quizzyBuilder.
+   *
+   * quizzyBuilder is free software: you can redistribute it and/or modify
+   * it under the terms of the GNU Affero General Public License as
+   * published by the Free Software Foundation, either version 3 of
+   * the License, or (at your option) any later version.
+   *
+   * quizzyBuilder is distributed in the hope that it will be useful,
+   * but WITHOUT ANY WARRANTY; without even the implied warranty of
+   * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   * GNU Affero General Public License for more details.
+   *
+   * You should have received a copy of the GNU Affero General Public
+   * License along with quizzyBuilder. If not, see <http://www.gnu.org/licenses/>.
+   */
+
   include_once 'util.php';
-  
+
   $quest_no = isset($i) ? $i : $_GET['quest_no'];
   $main_id = 'q' . $quest_no;
   $quest_pic_src = isset($quiz) ? addElem($quiz->question[$quest_no]->img['src']) : '';
@@ -19,10 +36,10 @@
     </div>
     <div class="group">
       <ul id="<?php echo $main_id; ?>_container" class="dragging_container">
-        <?php 
+        <?php
           $to_add = isset($quiz) ? count($quiz->question[$quest_no]->option) : 3;
           for ($o=0; $o < $to_add; $o++) {
-            include 'addOption.php'; 
+            include 'addOption.php';
           }
           if(isset($quiz)) {
 ?>
